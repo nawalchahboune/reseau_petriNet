@@ -59,7 +59,12 @@ public class Reseau_Petri implements IReseauPetri{
 
 	@Override
 	public void fire(Transition transition) {
-		// TODO Auto-generated method stub
+		ArrayList<ArcEntrant> arcsEntrant= transition.getArcsEntrants();
+		for (ArcEntrant arcEntrant : arcsEntrant) {
+			int poids=arcEntrant.getPoids();
+			Place place= (Arc)arcEntrant.get
+			
+		}
 		
 	}
 
