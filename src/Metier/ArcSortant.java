@@ -2,8 +2,8 @@ package Metier;
 
 public abstract class ArcSortant extends Arc {
 
-	public ArcSortant() {
-		
+	public ArcSortant(Place place, Transition transition) {
+		super(place, transition);
 	}
 	
 	public abstract void update_jeton_place();
