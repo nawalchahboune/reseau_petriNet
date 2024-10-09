@@ -16,7 +16,16 @@ public class Transition {
 	public void setTirable(boolean tirable) {
 		this.tirable=tirable;
 	}
-	
+	public void setTirable() {
+		this.setTirable(true);
+		for (ArcSortant arcEntrant : arcsEntrants) {
+			if(!(arcEntrant.arcIsFireable())) {
+				this.setTirable(false);
+				break;
+			}
+			
+		}
+	}
 	public boolean isTirable() {
 		return tirable;
 	}
