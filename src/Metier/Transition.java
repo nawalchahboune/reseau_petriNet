@@ -16,7 +16,16 @@ public class Transition {
 	public void setTirable(boolean tirable) {
 		this.tirable=tirable;
 	}
-	
+	public void setTirable() {
+		this.setTirable(true);
+		for (ArcSortant arcEntrant : arcsEntrants) {
+			if(!(arcEntrant.arcIsFireable())) {
+				this.setTirable(false);
+				break;
+			}
+			
+		}
+	}
 	public boolean isTirable() {
 		return tirable;
 	}
@@ -28,16 +37,20 @@ public class Transition {
 		
 		return arcsEntrants  ;
 	}
-	public void add_to_arc_sortant(ArcEntrant arcEntrant) {
+	public void add_to_arc_sortant(ArcEntrant arcSortant) {
+		this.arcsSortants.add(arcSortant);
 		
 	}
-	public void add_to_arc_entrant(ArcSortant arcSortant) {
+	public void add_to_arc_entrant(ArcSortant arcEntrant) {
+		this.arcsEntrants.add(arcEntrant);
 		
 	}
-	public void remove_from_arc_Sortant(ArcEntrant arcEntrant) {
+	public void remove_from_arc_Sortant(ArcEntrant arcSortant) {
+		this.arcsSortants.add(arcSortant);
 		
 	}
-	public void remove_from_arc_entrant(ArcSortant arcSortant) {
+	public void remove_from_arc_entrant(ArcSortant arcEntrant) {
+		this.arcsEntrants.add(arcEntrant);
 		
 	}
 	

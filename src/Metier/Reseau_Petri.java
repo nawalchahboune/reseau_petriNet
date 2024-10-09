@@ -1,5 +1,6 @@
 package Metier;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -58,10 +59,15 @@ public class Reseau_Petri implements IReseauPetri{
 	}
 
 	@Override
+
 	public void fire(Transition transition) {
+		//type ArcSortant réfère à un arc sortant de la place associé; 
+		//donc un arc entrant de la transition et vis vers ca
+		
 		ArrayList<ArcSortant> arcsEntrant= transition.getArcsEntrants();//entrant de la place
 		
 		for (ArcSortant arcEntrant : arcsEntrant) {
+			//en  vérifie si l'arc est fireable; si il ne l'est pas transition est non plus tirable
 			if(arcEntrant.arcIsFireable()) {
 				transition.setTirable(true);
 			}
@@ -70,6 +76,7 @@ public class Reseau_Petri implements IReseauPetri{
 				break;
 			}
 		}
+		//si la transition est tirable; on appelle les methodes de mise à jour des jetons
 		if(transition.isTirable()) {
 			ArrayList<ArcEntrant> arcsSortant= transition.getArcsSortants();
 			for(ArcEntrant arcSort : arcsSortant) {
@@ -84,7 +91,17 @@ public class Reseau_Petri implements IReseauPetri{
 
 	@Override
 	public void fireAll() {
-		// TODO Auto-generated method stub
+		ArrayList<Transition> transitionTirables= new ArrayList();
+		for (Transition transition : this.transitions) {
+			transition.setTirable();
+			if(transition.isTirable()) {
+				transitionTirables.add(transition);
+			}
+		}
+		while (transitionTirables.size()>0) {
+			
+			
+		}
 		
 	}
 
