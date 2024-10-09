@@ -10,7 +10,6 @@ public class Reseau_Petri implements IReseauPetri{
 	
 
 	public Reseau_Petri(ArrayList<Arc> arcs, ArrayList<Place> places, ArrayList<Transition> transitions) {
-		super();
 		this.arcs = arcs;
 		this.places = places;
 		this.transitions = transitions;
