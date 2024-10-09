@@ -8,6 +8,7 @@ public class Transition {
 	private ArrayList<ArcEntrant> arcsSortants;
 	public Transition(boolean tirable, ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
 		super();
+		//A commenter porte à confusion
 		this.tirable = tirable;
 		this.arcsSortants = arcsEntrants;
 		this.arcsEntrants = arcsSortants;
