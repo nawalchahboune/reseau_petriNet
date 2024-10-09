@@ -1,6 +1,7 @@
 package Metier;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Reseau_Petri implements IReseauPetri{
 	private ArrayList<Arc> arcs;
@@ -59,11 +60,25 @@ public class Reseau_Petri implements IReseauPetri{
 
 	@Override
 	public void fire(Transition transition) {
-		ArrayList<ArcEntrant> arcsEntrant= transition.getArcsEntrants();
-		for (ArcEntrant arcEntrant : arcsEntrant) {
-			int poids=arcEntrant.getPoids();
-			Place place= (Arc)arcEntrant.get
-			
+		ArrayList<ArcSortant> arcsEntrant= transition.getArcsEntrants();//entrant de la place
+		
+		for (ArcSortant arcEntrant : arcsEntrant) {
+			if(arcEntrant.arcIsFireable()) {
+				transition.setTirable(true);
+			}
+			else {
+				transition.setTirable(false);
+				break;
+			}
+		}
+		if(transition.isTirable()) {
+			ArrayList<ArcEntrant> arcsSortant= transition.getArcsSortants();
+			for(ArcEntrant arcSort : arcsSortant) {
+				arcSort.update_jetons_place();
+			}
+			for (ArcSortant arcEnt : arcsEntrant) {
+				arcEnt.update_jeton_place();
+			}
 		}
 		
 	}
