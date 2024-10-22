@@ -1,4 +1,4 @@
-package Metier;
+package metier;
 
 public abstract class Arc {
 	private Place place;

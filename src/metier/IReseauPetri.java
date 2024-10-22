@@ -1,4 +1,4 @@
-package Metier;
+package metier;
 
 public interface IReseauPetri {
 	public void ajouter_Arc(Arc arc);

@@ -1,4 +1,4 @@
-package Metier;
+package metier;
 
 public class ArcEntrant extends Arc {
 	public int poids;

@@ -1,10 +1,11 @@
-package Metier;
+package metier;
 
-public class ArcSortantNormal extends ArcSortant {
-	public int poids;
-	public ArcSortantNormal(Place place, Transition transition) {
+public class ArcZero extends ArcSortant {
+	private boolean active;
+	public ArcZero(Place place, Transition transition) {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
+		
 	}
 	@Override
 	public void update_jeton_place() {
@@ -14,6 +15,14 @@ public class ArcSortantNormal extends ArcSortant {
 	@Override
 	public boolean arcIsFireable() {
 		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public void setActive(boolean active) {
+		
+	}
+	
+	public boolean isActive() {
 		return false;
 	}
 	@Override

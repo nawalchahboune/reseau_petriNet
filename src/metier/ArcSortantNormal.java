@@ -1,8 +1,8 @@
-package Metier;
+package metier;
 
-public class ArcVideur extends ArcSortant{
-	public boolean active;
-	public ArcVideur(Place place, Transition transition) {
+public class ArcSortantNormal extends ArcSortant {
+	public int poids;
+	public ArcSortantNormal(Place place, Transition transition) {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
 	}
