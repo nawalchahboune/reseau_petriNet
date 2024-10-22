@@ -5,10 +5,12 @@ public class ArcEntrant extends Arc {
 	public ArcEntrant(Place place, Transition transition) {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
+		
 	}
 	
 	public void setPoids(int poids) {
 		this.poids = poids;
+		
 	}
 	
 	public int getPoids() {
