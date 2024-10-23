@@ -5,7 +5,7 @@ public class ArcZero extends ArcSortant {
 	public ArcZero(Place place, Transition transition) {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
-		
+		this.active =false;
 	}
 	@Override
 	public void update_jeton_place() {
@@ -14,12 +14,12 @@ public class ArcZero extends ArcSortant {
 	}
 	@Override
 	public boolean arcIsFireable() {
-		// TODO Auto-generated method stub
+		if (this.place.jetons == 0) {return true;}
 		return false;
 	}
 	
 	public void setActive(boolean active) {
-		
+		this.active = active;
 	}
 	
 	public boolean isActive() {

@@ -1,8 +1,8 @@
 package Metier;
 
 public abstract class Arc {
-	private Place place;
-	private Transition transition;
+	protected Place place;
+	protected Transition transition;
 	public Arc(Place place, Transition transition) {
 		super();
 		this.place = place;

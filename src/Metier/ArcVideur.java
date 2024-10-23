@@ -13,7 +13,7 @@ public class ArcVideur extends ArcSortant{
 	}
 	@Override
 	public boolean arcIsFireable() {
-		// TODO Auto-generated method stub
+		if (this.place.jetons >=1) {return true;}
 		return false;
 	}
 	@Override

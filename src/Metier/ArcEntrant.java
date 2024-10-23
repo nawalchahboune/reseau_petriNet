@@ -15,17 +15,18 @@ public class ArcEntrant extends Arc {
 		return this.poids;
 	}
     
-	public void update_jetons_place() {}
+	public void update_jetons_place() {
+		this.place.jetons = this.poids;
+	}
 
 	@Override
 	public void add_arc_to_transition() {
-		// TODO Auto-generated method stub
-		
+		this.transition.add_to_arc_sortant(this);
 	}
 
 	@Override
 	public void remove_arc_from_transition() {
 		// TODO Auto-generated method stub
-		
+		this.transition.remove_from_arc_Sortant(this);
 	}
 }

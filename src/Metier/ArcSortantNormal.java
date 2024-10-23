@@ -8,22 +8,25 @@ public class ArcSortantNormal extends ArcSortant {
 	}
 	@Override
 	public void update_jeton_place() {
-		// TODO Auto-generated method stub
+		this.place.jetons -= this.poids;
 		
 	}
 	@Override
 	public boolean arcIsFireable() {
 		// TODO Auto-generated method stub
+		if (this.poids <= this.place.jetons) {
+			return true;
+		}
 		return false;
 	}
 	@Override
 	public void add_arc_to_transition() {
-		// TODO Auto-generated method stub
+		this.transition.add_to_arc_entrant(this);
 		
 	}
 	@Override
 	public void remove_arc_from_transition() {
-		// TODO Auto-generated method stub
+		this.transition.remove_from_arc_entrant(this);
 		
 	}
 

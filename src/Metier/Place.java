@@ -1,7 +1,7 @@
 package Metier;
 
 public class Place {
-	private int jetons;
+	protected int jetons;
 	
 	public Place(int jetons) {
 		super();
