@@ -1,5 +1,7 @@
 package Metier;
 
+import java.util.Iterator;
+
 public class ArcSortantNormal extends ArcSortant {
 	public int poids;
 	public ArcSortantNormal(Place place, Transition transition) {
@@ -8,7 +10,15 @@ public class ArcSortantNormal extends ArcSortant {
 	}
 	@Override
 	public void update_jeton_place() {
-		this.place.jetons -= this.poids;
+		
+		Iterator<ArcEntrant> it = this.transition.getArcsSortants().iterator();
+		while(it.hasNext()) {
+			int a = it.next().getPoids();
+			int b = it.next().getPlace().getJetons();
+			it.next().getPlace().setJetons(a+b); 
+		}
+		int c = this.place.getJetons() - this.poids;
+		
 		
 	}
 	@Override

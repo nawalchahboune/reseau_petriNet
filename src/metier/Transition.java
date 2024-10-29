@@ -3,9 +3,9 @@ package Metier;
 import java.util.ArrayList;
 
 public class Transition {
-	private boolean tirable;
-	private ArrayList<ArcSortant> arcsEntrants;
-	private ArrayList<ArcEntrant> arcsSortants;
+	protected boolean tirable;
+	protected ArrayList<ArcSortant> arcsEntrants;
+	protected ArrayList<ArcEntrant> arcsSortants;
 	public Transition(boolean tirable, ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
 		super();
 		//A commenter porte à confusion
@@ -41,8 +41,8 @@ public class Transition {
 		this.arcsSortants.add(arcSortant);
 		
 	}
-	public void add_to_arc_entrant(ArcSortant arcEntrant) {
-		this.arcsEntrants.add(arcEntrant);
+	public void add_to_arc_entrant(ArcSortant arc) {
+		this.arcsEntrants.add(arc);
 		
 	}
 	public void remove_from_arc_Sortant(ArcEntrant arcSortant) {

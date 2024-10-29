@@ -20,12 +20,25 @@ public class Reseau_Petri implements IReseauPetri{
 	@Override
 	public void ajouter_Arc(Arc arc) {
 		this.arcs.add(arc);
-		
+		if(arc instanceof ArcSortant) {
+			arc.getTransition().add_to_arc_entrant((ArcSortant)arc);
+			arc.getPlace().add_to_arc_sortant((ArcSortant)arc);
+		}
+		if(arc instanceof ArcEntrant) {
+			arc.getTransition().add_to_arc_sortant((ArcEntrant)arc);
+			arc.getPlace().add_to_arc_entrant((ArcEntrant)arc);
+		}
 	}
 
 	@Override
 	public void supprimer_Arc(Arc arc) {
 		if(this.arcs.contains(arc)) {
+			if(arc instanceof ArcSortant) {
+				arc.getTransition().remove_from_arc_entrant((ArcSortant)arc);
+			}
+			if(arc instanceof ArcEntrant) {
+				arc.getTransition().remove_from_arc_Sortant((ArcEntrant)arc);
+			}
 			this.arcs.remove(this.arcs.indexOf(arc));
 		}
 	}
@@ -65,13 +78,10 @@ public class Reseau_Petri implements IReseauPetri{
 		//donc un arc entrant de la transition et vis vers ca
 		
 		ArrayList<ArcSortant> arcsEntrant= transition.getArcsEntrants();//entrant de la place
-		
+		transition.setTirable(true);
 		for (ArcSortant arcEntrant : arcsEntrant) {
 			//en  vérifie si l'arc est fireable; si il ne l'est pas transition est non plus tirable
-			if(arcEntrant.arcIsFireable()) {
-				transition.setTirable(true);
-			}
-			else {
+			if(!arcEntrant.arcIsFireable()) {
 				transition.setTirable(false);
 				break;
 			}
