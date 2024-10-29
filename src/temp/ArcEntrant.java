@@ -1,7 +1,7 @@
 package Metier;
 
 public class ArcEntrant extends Arc {
-	public int poids;
+	private int poids;
 	public ArcEntrant(Place place, Transition transition) {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
@@ -18,17 +18,18 @@ public class ArcEntrant extends Arc {
 	}
     
 	public void update_jetons_place() {
-		this.place.jetons = this.poids;
+		int a = this.getPlace().getJetons();
+		this.getPlace().setJetons(a + this.poids);
 	}
 
 	@Override
 	public void add_arc_to_transition() {
-		this.transition.add_to_arc_sortant(this);
+		this.getTransition().add_to_arc_sortant(this);
 	}
 
 	@Override
 	public void remove_arc_from_transition() {
 		// TODO Auto-generated method stub
-		this.transition.remove_from_arc_Sortant(this);
+		this.getTransition().remove_from_arc_Sortant(this);
 	}
 }

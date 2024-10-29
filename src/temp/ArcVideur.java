@@ -1,6 +1,5 @@
 package Metier;
 
-import java.util.Iterator;
 
 public class ArcVideur extends ArcSortant{
 	private boolean active;
@@ -11,27 +10,22 @@ public class ArcVideur extends ArcSortant{
 	@Override
 	public void update_jeton_place() {
 		// TODO Auto-generated method stub
-		Iterator<ArcEntrant> it = this.transition.getArcsSortants().iterator();
-		while(it.hasNext()) {
-			int a = it.next().getPoids();
-			int b = it.next().getPlace().getJetons();
-			it.next().getPlace().setJetons(a+b); 
-		}
+		this.getPlace().setJetons(0);
 		
 	}
 	@Override
 	public boolean arcIsFireable() {
-		if (this.place.jetons >=1) {return true;}
+		if (this.getPlace().getJetons() >=1) {return true;}
 		return false;
 	}
 	@Override
 	public void add_arc_to_transition() {
-		// TODO Auto-generated method stub
+		this.getTransition().add_to_arc_entrant(this);
 		
 	}
 	@Override
 	public void remove_arc_from_transition() {
-		// TODO Auto-generated method stub
+		this.getTransition().remove_from_arc_entrant(this);
 		
 	}
 

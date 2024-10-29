@@ -3,11 +3,17 @@ package Metier;
 import java.util.ArrayList;
 
 public class Transition {
-	protected boolean tirable;
-	protected ArrayList<ArcSortant> arcsEntrants;
-	protected ArrayList<ArcEntrant> arcsSortants;
+	private boolean tirable;
+	private ArrayList<ArcSortant> arcsEntrants;
+	private ArrayList<ArcEntrant> arcsSortants;
+	
+	public Transition() {
+		this.tirable = false;
+		this.arcsEntrants = new ArrayList<ArcSortant>();
+		this.arcsSortants = new ArrayList<ArcEntrant>();
+	}
+	
 	public Transition(boolean tirable, ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
-		super();
 		//A commenter porte à confusion
 		this.tirable = tirable;
 		this.arcsSortants = arcsEntrants;

@@ -9,14 +9,32 @@ public class Reseau_Petri implements IReseauPetri{
 	private ArrayList<Place> places;
 	private ArrayList<Transition> transitions;
 	
-
+	public Reseau_Petri() {
+		this.arcs = new ArrayList<Arc>();
+		this.places = new ArrayList<Place>();
+		this.transitions = new ArrayList<Transition>();
+	}
+	
 	public Reseau_Petri(ArrayList<Arc> arcs, ArrayList<Place> places, ArrayList<Transition> transitions) {
 		this.arcs = arcs;
 		this.places = places;
 		this.transitions = transitions;
 	}
 	
-
+/*	public ArrayList<Arc> getArcs(){
+		return this.arcs;
+	}
+	
+	public ArrayList<Place> getPlaces(){
+		return this.places;
+	}
+	
+	public ArrayList<Transition> getTransitions(){
+		return this.transitions;
+	}
+	
+	
+*/
 	@Override
 	public void ajouter_Arc(Arc arc) {
 		this.arcs.add(arc);
@@ -90,9 +108,11 @@ public class Reseau_Petri implements IReseauPetri{
 		if(transition.isTirable()) {
 			ArrayList<ArcEntrant> arcsSortant= transition.getArcsSortants();
 			for(ArcEntrant arcSort : arcsSortant) {
+				
 				arcSort.update_jetons_place();
 			}
 			for (ArcSortant arcEnt : arcsEntrant) {
+				
 				arcEnt.update_jeton_place();
 			}
 		}
@@ -101,14 +121,15 @@ public class Reseau_Petri implements IReseauPetri{
 
 	@Override
 	public void fireAll() {
-		ArrayList<Transition> transitionTirables= new ArrayList();
+		//ArrayList<Transition> transitionTirables= new ArrayList();
 		for (Transition transition : this.transitions) {
-			transition.setTirable();
-			if(transition.isTirable()) {
-				transitionTirables.add(transition);
-			}
-		}
-		while (transitionTirables.size()>0) {
+			fire(transition);
+			//transition.setTirable();
+			//if(transition.isTirable()) {
+				//transitionTirables.add(transition);
+			//}
+		//}
+		//while (transitionTirables.size()>0) {
 			
 			
 		}

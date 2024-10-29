@@ -1,42 +1,39 @@
 package Metier;
 
-import java.util.Iterator;
 
 public class ArcSortantNormal extends ArcSortant {
-	public int poids;
+	private int poids;
+	
+	
 	public ArcSortantNormal(Place place, Transition transition) {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
 	}
+	
+	public void setPoids(int poids) {
+		this.poids = poids;
+	}
 	@Override
 	public void update_jeton_place() {
-		
-		Iterator<ArcEntrant> it = this.transition.getArcsSortants().iterator();
-		while(it.hasNext()) {
-			int a = it.next().getPoids();
-			int b = it.next().getPlace().getJetons();
-			it.next().getPlace().setJetons(a+b); 
-		}
-		int c = this.place.getJetons() - this.poids;
-		
-		
+		int jetons = this.getPlace().getJetons();
+		this.getPlace().setJetons(jetons - this.poids);
 	}
 	@Override
 	public boolean arcIsFireable() {
 		// TODO Auto-generated method stub
-		if (this.poids <= this.place.jetons) {
+		if (this.poids <= this.getPlace().getJetons()) {
 			return true;
 		}
 		return false;
 	}
 	@Override
 	public void add_arc_to_transition() {
-		this.transition.add_to_arc_entrant(this);
+		this.getTransition().add_to_arc_entrant(this);
 		
 	}
 	@Override
 	public void remove_arc_from_transition() {
-		this.transition.remove_from_arc_entrant(this);
+		this.getTransition().remove_from_arc_entrant(this);
 		
 	}
 

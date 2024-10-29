@@ -14,7 +14,7 @@ public class ArcZero extends ArcSortant {
 	}
 	@Override
 	public boolean arcIsFireable() {
-		if (this.place.jetons == 0) {return true;}
+		if (this.getPlace().getJetons() == 0) {return true;}
 		return false;
 	}
 	
@@ -27,8 +27,7 @@ public class ArcZero extends ArcSortant {
 	}
 	@Override
 	public void add_arc_to_transition() {
-		// TODO Auto-generated method stub
-		
+		this.getTransition().add_to_arc_entrant(this);
 	}
 	@Override
 	public void remove_arc_from_transition() {

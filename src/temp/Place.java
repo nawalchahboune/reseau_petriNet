@@ -3,14 +3,15 @@ package Metier;
 import java.util.ArrayList;
 
 public class Place {
-	protected int jetons;
-	protected ArrayList<ArcSortant> arcsSortants;
-	protected ArrayList<ArcEntrant> arcsEntrants;
+	private int jetons;
+	private ArrayList<ArcSortant> arcsSortants;
+	private ArrayList<ArcEntrant> arcsEntrants;
 	
 	
 	public Place(int jetons) {
-		super();
 		this.jetons = jetons;
+		this.arcsEntrants = new ArrayList<ArcEntrant>();
+		this.arcsSortants = new ArrayList<ArcSortant>();
 	}
 
 	public int getJetons() {
