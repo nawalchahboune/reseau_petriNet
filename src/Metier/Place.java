@@ -2,24 +2,36 @@ package Metier;
 
 import java.util.ArrayList;
 
+import Exceptions.NegativeToken;
+
 public class Place {
 	private int jetons;
 	private ArrayList<ArcSortant> arcsSortants;
 	private ArrayList<ArcEntrant> arcsEntrants;
 	
 	
-	public Place(int jetons) {
-		this.jetons = jetons;
-		this.arcsEntrants = new ArrayList<ArcEntrant>();
-		this.arcsSortants = new ArrayList<ArcSortant>();
+	public Place(int jetons) throws NegativeToken{
+		if(jetons>=0) {
+			this.jetons = jetons;
+			this.arcsEntrants = new ArrayList<ArcEntrant>();
+			this.arcsSortants = new ArrayList<ArcSortant>();
+		}else {
+			throw new NegativeToken();
+		}
 	}
 
 	public int getJetons() {
 		return jetons;
 	}
 
-	public void setJetons(int jetons) {
-		this.jetons = jetons;
+	public void setJetons(int jetons) throws NegativeToken{
+		if(jetons>=0) {
+
+			this.jetons = jetons;
+		}
+		else {
+			throw new NegativeToken();
+		}
 	}
 	
 	public  ArrayList<ArcEntrant> getArcsEntrants() {

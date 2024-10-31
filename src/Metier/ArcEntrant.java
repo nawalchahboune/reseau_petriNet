@@ -1,10 +1,21 @@
 package Metier;
 
+import Exceptions.NegativeToken;
+import Exceptions.NullPlaceException;
+import Exceptions.NullTransitionException;
+
 public class ArcEntrant extends Arc {
 	private int poids;
-	public ArcEntrant(Place place, Transition transition) {
-		// TODO Auto-generated constructor stub
+	public ArcEntrant(int poids ,Place place, Transition transition) throws NullPlaceException, NullTransitionException {
+		
 		super(place, transition);
+		this.poids=poids;
+		if(place==null) {
+			throw new NullPlaceException();
+		}
+		if(transition==null) {
+			throw new NullTransitionException();
+		}
 		
 	}
 	
@@ -17,9 +28,14 @@ public class ArcEntrant extends Arc {
 		return this.poids;
 	}
     
-	public void update_jetons_place() {
+	public void update_jetons_place() throws NegativeToken {
 		int a = this.getPlace().getJetons();
-		this.getPlace().setJetons(a + this.poids);
+		if(a + this.poids>=0) {
+			this.getPlace().setJetons(a + this.poids);
+		}else {
+			throw new NegativeToken();
+		}
+		
 	}
 
 	@Override

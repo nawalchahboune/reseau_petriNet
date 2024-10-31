@@ -4,7 +4,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Reseau_Petri implements IReseauPetri{
+import Exceptions.NegativeToken;
+import Exceptions.NullPlaceException;
+import Exceptions.NullTArcException;
+import Exceptions.NullTransitionException;
+
+public class Reseau_Petri implements IReseauPetri {
 	private ArrayList<Arc> arcs;
 	private ArrayList<Place> places;
 	private ArrayList<Transition> transitions;
@@ -36,15 +41,19 @@ public class Reseau_Petri implements IReseauPetri{
 	
 */
 	@Override
-	public void ajouter_Arc(Arc arc) {
-		this.arcs.add(arc);
-		if(arc instanceof ArcSortant) {
-			arc.getTransition().add_to_arc_entrant((ArcSortant)arc);
-			arc.getPlace().add_to_arc_sortant((ArcSortant)arc);
-		}
-		if(arc instanceof ArcEntrant) {
-			arc.getTransition().add_to_arc_sortant((ArcEntrant)arc);
-			arc.getPlace().add_to_arc_entrant((ArcEntrant)arc);
+	public void ajouter_Arc(Arc arc) throws NullTArcException{
+		if(arc!=null) {
+			this.arcs.add(arc);
+			if(arc instanceof ArcSortant) {
+				arc.getTransition().add_to_arc_entrant((ArcSortant)arc);
+				arc.getPlace().add_to_arc_sortant((ArcSortant)arc);
+			}
+			if(arc instanceof ArcEntrant) {
+				arc.getTransition().add_to_arc_sortant((ArcEntrant)arc);
+				arc.getPlace().add_to_arc_entrant((ArcEntrant)arc);
+			}
+		}else {
+			throw new NullTArcException();
 		}
 	}
 
@@ -62,8 +71,14 @@ public class Reseau_Petri implements IReseauPetri{
 	}
 
 	@Override
-	public void ajouter_Place(Place place) {
-		this.places.add(place);
+	public void ajouter_Place(Place place) throws NullPlaceException {
+		if(place!=null) {
+			this.places.add(place);
+		}
+		else {
+			throw new NullPlaceException();
+		}
+		
 		
 	}
 
@@ -76,8 +91,14 @@ public class Reseau_Petri implements IReseauPetri{
 	}
 
 	@Override
-	public void ajouter_Tarnsition(Transition transition) {
-		this.transitions.add(transition);
+	public void ajouter_Tarnsition(Transition transition) throws NullTransitionException {
+		if(transition!=null) {
+			this.transitions.add(transition);
+		}
+		else {
+			throw new NullTransitionException();
+		}
+		
 		
 	}
 
@@ -91,39 +112,51 @@ public class Reseau_Petri implements IReseauPetri{
 
 	@Override
 
-	public void fire(Transition transition) {
+	public void fire(Transition transition) throws NullTransitionException , NegativeToken {
 		//type ArcSortant réfère à un arc sortant de la place associé; 
 		//donc un arc entrant de la transition et vis vers ca
-		
-		ArrayList<ArcSortant> arcsEntrant= transition.getArcsEntrants();//entrant de la place
-		transition.setTirable(true);
-		for (ArcSortant arcEntrant : arcsEntrant) {
-			//en  vérifie si l'arc est fireable; si il ne l'est pas transition est non plus tirable
-			if(!arcEntrant.arcIsFireable()) {
-				transition.setTirable(false);
-				break;
+		if(transition!=null) {
+
+			ArrayList<ArcSortant> arcsEntrant= transition.getArcsEntrants();//entrant de la place
+			transition.setTirable(true);
+			for (ArcSortant arcEntrant : arcsEntrant) {
+				//en  vérifie si l'arc est fireable; si il ne l'est pas transition est non plus tirable
+				if(!arcEntrant.arcIsFireable()) {
+					transition.setTirable(false);
+					break;
+				}
 			}
-		}
-		//si la transition est tirable; on appelle les methodes de mise à jour des jetons
-		if(transition.isTirable()) {
-			ArrayList<ArcEntrant> arcsSortant= transition.getArcsSortants();
-			for(ArcEntrant arcSort : arcsSortant) {
-				
-				arcSort.update_jetons_place();
+			//si la transition est tirable; on appelle les methodes de mise à jour des jetons
+			if(transition.isTirable()) {
+				ArrayList<ArcEntrant> arcsSortant= transition.getArcsSortants();
+				for(ArcEntrant arcSort : arcsSortant) {
+					if(true) {
+						arcSort.update_jetons_place();
+					}
+					else {
+						throw new NegativeToken();
+					}
+				}
+				for (ArcSortant arcEnt : arcsEntrant) {
+					if(true) {
+						arcEnt.update_jeton_place();
+					}
+					else {
+						throw new NegativeToken();
+					}
+				}
 			}
-			for (ArcSortant arcEnt : arcsEntrant) {
-				
-				arcEnt.update_jeton_place();
-			}
+		}else {
+			throw new NullTransitionException();
 		}
 		
 	}
 
 	@Override
-	public void fireAll() {
+	public void fireAll(){
 		//ArrayList<Transition> transitionTirables= new ArrayList();
 		for (Transition transition : this.transitions) {
-			fire(transition);
+		//	fire(transition);
 			//transition.setTirable();
 			//if(transition.isTirable()) {
 				//transitionTirables.add(transition);
