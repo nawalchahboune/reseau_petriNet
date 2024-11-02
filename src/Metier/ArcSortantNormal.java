@@ -23,6 +23,9 @@ public class ArcSortantNormal extends ArcSortant {
 	public void setPoids(int poids) {
 		this.poids = poids;
 	}
+	public int getPoids() {
+		return this.poids;
+	}
 	@Override
 	public void update_jeton_place() throws NegativeToken{
 		int jetons = this.getPlace().getJetons();
@@ -51,6 +54,13 @@ public class ArcSortantNormal extends ArcSortant {
 	public void remove_arc_from_transition() {
 		this.getTransition().remove_from_arc_entrant(this);
 		
+	}
+	
+	public String toString() {
+		//arc simple poids 1 (place avec 4 jetons vers transition)
+		
+		return "arc simple poids "+ this.getPoids() +
+				" ( place avec "+this.getPlace().getJetons()+" jetons vers transition";
 	}
 
 }

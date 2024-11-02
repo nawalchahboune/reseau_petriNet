@@ -57,8 +57,42 @@ public class Transition {
 	}
 	public void remove_from_arc_entrant(ArcSortant arcEntrant) {
 		this.arcsEntrants.add(arcEntrant);
-		
 	}
-	
+	@Override
+	public String toString() {
+	    int Enormal = 0;
+	    int Evideur = 0;
+	    int Ezero = 0;
+	    String s = "transition, ";
+
+	    if (arcsEntrants.isEmpty() && arcsSortants.isEmpty()) {
+	        s += "Isolée";
+	    } else {
+	        if (!arcsSortants.isEmpty()) {
+	            s += this.getArcsSortants().size() + " arc(s) sortant(s) ";
+	        } else {
+	            s += "0 arc(s) sortant(s) ";
+	        }
+
+	        if (!arcsEntrants.isEmpty()) {
+	            s += "// arc(s) entrant(s) ==> ";
+	            for (ArcSortant arcEntrant : this.getArcsEntrants()) {
+	                if (arcEntrant instanceof ArcSortantNormal) {
+	                    Enormal++;
+	                } else if (arcEntrant instanceof ArcVideur) {
+	                    Evideur++;
+	                } else if (arcEntrant instanceof ArcZero) {
+	                    Ezero++;
+	                }
+	            }
+	            s += Enormal + " arc(s) entrant(s) normal / "
+	                 + Evideur + " arc(s) entrant(s) videur / "
+	                 + Ezero + " arc(s) entrant(s) zero .";
+	        }
+	    }
+
+	    return s;
+	}
+
 
 }

@@ -168,5 +168,40 @@ public class Reseau_Petri implements IReseauPetri {
 		}
 		
 	}
+	@Override
+	public String toString() {
+		System.out.println("xh?");
+		String s="****************************"+"\n";
+		for (Transition transition : transitions) {
+			System.out.println(transitions.size());
+			System.out.println("hh ? "+ transition.toString() );
+			s+=transition.toString() +"\n";
+			ArrayList<ArcSortant> arcE= transition.getArcsEntrants();
+			ArrayList<ArcEntrant> arcS= transition.getArcsSortants();
+			ArrayList<Place> places = new ArrayList<Place>() ;
+			for (ArcSortant a : arcE) {
+				places.add(a.getPlace());
+				
+			}
+			for (ArcEntrant a : arcS) {
+				places.add(a.getPlace());
+				
+			}
+			for (Place place : places) {
+				s+=place.toString()+"\n";
+				
+			}
+			for (ArcSortant a : arcE) {
+				s+=a.toString() +"\n";
+				
+			}
+			for (ArcEntrant a : arcS) {
+				s+=a.toString() + "\n";
+			}
+			
+			
+		}
+		return s;
+	}
 
 }

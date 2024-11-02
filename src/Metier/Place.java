@@ -33,7 +33,6 @@ public class Place {
 			throw new NegativeToken();
 		}
 	}
-	
 	public  ArrayList<ArcEntrant> getArcsEntrants() {
 		return  arcsEntrants ;
 		
@@ -57,6 +56,30 @@ public class Place {
 	public void remove_from_arc_entrant( ArcEntrant arcEntrant) {
 		this.arcsEntrants.add(arcEntrant);
 		
+	}
+	@Override
+	public String toString() {
+		int Snormal =0;
+		int Svideur =0;
+		int Szero=0;
+		for (ArcSortant arcSortant : this.getArcsSortants()) {
+			if( arcSortant instanceof ArcSortantNormal ) {
+				Snormal++;
+			}
+			if( arcSortant instanceof ArcVideur ) {
+				Svideur++;
+			}
+			if( arcSortant instanceof ArcZero ) {
+				Szero++;
+			}
+			
+		}
+		
+		return	"place avec "+ this.getJetons() +" :: arcs=> " 
+		+ Snormal+ " arc(s) sortant(s) normal / " 
+		+ Svideur +" arc(s) sortant(s) videur " 
+		+ Szero + " arc(s) sortant(s) zero ///" 
+		+ this.getArcsEntrants().size() +" arc(s) entrant(s)  ";
 	}
 	
 

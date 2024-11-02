@@ -48,4 +48,9 @@ public class ArcEntrant extends Arc {
 		// TODO Auto-generated method stub
 		this.getTransition().remove_from_arc_Sortant(this);
 	}
+	@Override
+	public String toString() {
+		return "arc simple poids "+ this.getPoids() +
+				"( transition vers place avec  "+this.getPlace().getJetons()+" jetons";
+	}
 }
