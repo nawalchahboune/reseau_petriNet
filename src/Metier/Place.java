@@ -5,18 +5,24 @@ import java.util.ArrayList;
 import Exceptions.NegativeToken;
 
 public class Place {
+	private static int nb;
+	private String name;
 	private int jetons;
 	private ArrayList<ArcSortant> arcsSortants;
 	private ArrayList<ArcEntrant> arcsEntrants;
 	
 	public Place() {
+		this.name = "PLACE_" +Integer.toString(nb);
 		this.jetons=0;
+		nb++;
 	}
 	public Place(int jetons) throws NegativeToken{
 		if(jetons>=0) {
 			this.jetons = jetons;
+			this.name = "PLACE_" +Integer.toString(nb);
 			this.arcsEntrants = new ArrayList<ArcEntrant>();
 			this.arcsSortants = new ArrayList<ArcSortant>();
+			nb++;
 		}else {
 			throw new NegativeToken();
 		}
@@ -34,6 +40,19 @@ public class Place {
 		else {
 			throw new NegativeToken();
 		}
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name+ " \n";
 	}
 	
 	public  ArrayList<ArcEntrant> getArcsEntrants() {
