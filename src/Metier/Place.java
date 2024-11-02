@@ -9,7 +9,9 @@ public class Place {
 	private ArrayList<ArcSortant> arcsSortants;
 	private ArrayList<ArcEntrant> arcsEntrants;
 	
-	
+	public Place() {
+		this.jetons=0;
+	}
 	public Place(int jetons) throws NegativeToken{
 		if(jetons>=0) {
 			this.jetons = jetons;

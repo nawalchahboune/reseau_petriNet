@@ -1,5 +1,6 @@
 package Metier;
 
+import Exceptions.ExistingArcException;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
@@ -34,7 +35,12 @@ public class ArcVideur extends ArcSortant{
 	}
 	@Override
 	public void add_arc_to_transition() {
-		this.getTransition().add_to_arc_entrant(this);
+		try {
+			this.getTransition().add_to_arc_entrant(this);
+		} catch (ExistingArcException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 		
 	}
 	@Override
@@ -42,5 +48,19 @@ public class ArcVideur extends ArcSortant{
 		this.getTransition().remove_from_arc_entrant(this);
 		
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true; // Vérification de référence
+	    if (obj == null || getClass() != obj.getClass()) return false; // Vérification du type
+
+	    ArcVideur other = (ArcVideur) obj;
+
+	    // Comparaison des attributs poids, place et transition
+	    return  
+	           (this.getPlace() != null && this.getPlace().equals(other.getPlace())) &&
+	           (this.getTransition() != null && this.getTransition().equals(other.getTransition()));
+	}
+
 
 }

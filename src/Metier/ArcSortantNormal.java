@@ -1,5 +1,6 @@
 package Metier;
 
+import Exceptions.ExistingArcException;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
@@ -43,14 +44,31 @@ public class ArcSortantNormal extends ArcSortant {
 		return false;
 	}
 	@Override
-	public void add_arc_to_transition() {
-		this.getTransition().add_to_arc_entrant(this);
+	public void add_arc_to_transition()  {
+		try {
+			this.getTransition().add_to_arc_entrant(this);
+		} catch (ExistingArcException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 		
 	}
 	@Override
 	public void remove_arc_from_transition() {
 		this.getTransition().remove_from_arc_entrant(this);
 		
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true; 
+	    if (obj == null || getClass() != obj.getClass()) return false;
+
+	    ArcSortantNormal other = (ArcSortantNormal) obj;
+
+	    return this.poids == other.poids &&
+	           (this.getPlace() != null && this.getPlace().equals(other.getPlace())) &&
+	           (this.getTransition() != null && this.getTransition().equals(other.getTransition()));
 	}
 
 }

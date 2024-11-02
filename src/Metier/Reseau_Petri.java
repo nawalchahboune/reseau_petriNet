@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Exceptions.ExistingArcException;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
@@ -41,7 +42,10 @@ public class Reseau_Petri implements IReseauPetri {
 	
 */
 	@Override
-	public void ajouter_Arc(Arc arc) throws NullTArcException{
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArcException{
+		if(this.arcs.contains(arc)) {
+			throw new ExistingArcException();
+		}
 		if(arc!=null) {
 			this.arcs.add(arc);
 			if(arc instanceof ArcSortant) {
