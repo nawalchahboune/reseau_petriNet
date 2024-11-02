@@ -7,6 +7,8 @@ import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
 import Exceptions.NullTransitionException;
+import Exceptions.UnknownPlaceException;
+import Exceptions.UnknownTransitionException;
 
 public class Reseau_Petri implements IReseauPetri {
 	private ArrayList<Arc> arcs;
@@ -40,11 +42,17 @@ public class Reseau_Petri implements IReseauPetri {
 	
 */
 	@Override
-	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc{
-		if(this.arcs.contains(arc)) {
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException{
+		if(!this.places.contains(arc.getPlace())) {
+			throw new UnknownPlaceException();
+		}
+		else if (!this.transitions.contains(arc.getTransition())) {
+			throw new UnknownTransitionException();
+		}
+		else if(this.arcs.contains(arc)) {
 			throw new ExistingArc();
 		}
-		if(arc!=null) {
+		else if(arc!=null) {
 			this.arcs.add(arc);
 			if(arc instanceof ArcSortant) {
 				arc.getTransition().add_to_arc_entrant((ArcSortant)arc);
