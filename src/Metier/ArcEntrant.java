@@ -7,11 +7,7 @@ import Exceptions.NullTransitionException;
 
 public class ArcEntrant extends Arc {
 	private int poids;
-	public ArcEntrant() {
-		super();
-		this.poids = 0;
-		
-	}
+	
 	public ArcEntrant(int poids ,Place place, Transition transition) throws NullPlaceException, NullTransitionException {
 		
 		super(place, transition);
