@@ -1,6 +1,6 @@
 package Metier;
 
-import Exceptions.ExistingArcException;
+import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
@@ -48,7 +48,7 @@ public class ArcEntrant extends Arc {
 	public void add_arc_to_transition() {
 		try {
 			this.getTransition().add_to_arc_sortant(this);
-		}catch(ExistingArcException e) {
+		}catch(ExistingArc e) {
 			e.getMessage();
 		}
 		
@@ -58,6 +58,11 @@ public class ArcEntrant extends Arc {
 	public void remove_arc_from_transition() {
 		// TODO Auto-generated method stub
 		this.getTransition().remove_from_arc_Sortant(this);
+	}
+	@Override
+	public String toString() {
+		return "arc simple poids "+ this.getPoids() +
+				"( transition vers place avec  "+this.getPlace().getJetons()+" jetons";
 	}
 	
 	@Override
@@ -70,5 +75,6 @@ public class ArcEntrant extends Arc {
 	    return this.poids == other.poids &&
 	           (this.getPlace() != null && this.getPlace().equals(other.getPlace())) &&
 	           (this.getTransition() != null && this.getTransition().equals(other.getTransition()));
+
 	}
 }

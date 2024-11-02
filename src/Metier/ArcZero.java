@@ -1,6 +1,6 @@
 package Metier;
 
-import Exceptions.ExistingArcException;
+import Exceptions.ExistingArc;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
 
@@ -40,7 +40,7 @@ public class ArcZero extends ArcSortant {
 	public void add_arc_to_transition() {
 		try {
 			this.getTransition().add_to_arc_entrant(this);
-		} catch (ExistingArcException e) {
+		} catch (ExistingArc e) {
 			// TODO Auto-generated catch block
 			e.getMessage();
 		}

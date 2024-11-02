@@ -1,10 +1,8 @@
 package Metier;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import Exceptions.ExistingArcException;
+import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
@@ -42,9 +40,9 @@ public class Reseau_Petri implements IReseauPetri {
 	
 */
 	@Override
-	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArcException{
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc{
 		if(this.arcs.contains(arc)) {
-			throw new ExistingArcException();
+			throw new ExistingArc();
 		}
 		if(arc!=null) {
 			this.arcs.add(arc);
@@ -171,6 +169,41 @@ public class Reseau_Petri implements IReseauPetri {
 			
 		}
 		
+	}
+	@Override
+	public String toString() {
+		System.out.println("xh?");
+		String s="****************************"+"\n";
+		for (Transition transition : transitions) {
+			System.out.println(transitions.size());
+			System.out.println("hh ? "+ transition.toString() );
+			s+=transition.toString() +"\n";
+			ArrayList<ArcSortant> arcE= transition.getArcsEntrants();
+			ArrayList<ArcEntrant> arcS= transition.getArcsSortants();
+			ArrayList<Place> places = new ArrayList<Place>() ;
+			for (ArcSortant a : arcE) {
+				places.add(a.getPlace());
+				
+			}
+			for (ArcEntrant a : arcS) {
+				places.add(a.getPlace());
+				
+			}
+			for (Place place : places) {
+				s+=place.toString()+"\n";
+				
+			}
+			for (ArcSortant a : arcE) {
+				s+=a.toString() +"\n";
+				
+			}
+			for (ArcEntrant a : arcS) {
+				s+=a.toString() + "\n";
+			}
+			
+			
+		}
+		return s;
 	}
 
 }

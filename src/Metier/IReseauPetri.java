@@ -1,13 +1,13 @@
 package Metier;
 
-import Exceptions.ExistingArcException;
+import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
 import Exceptions.NullTransitionException;
 
 public interface IReseauPetri {
-	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArcException;
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc;
 	public void supprimer_Arc(Arc arc);
 	public void ajouter_Place(Place place) throws NullPlaceException;
 	public void supprimer_Place(Place place);
