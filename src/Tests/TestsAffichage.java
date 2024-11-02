@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
@@ -26,7 +27,12 @@ class TestsAffichage {
 	public void testAffocherTransitionAvecArcsEntrants() throws NullPlaceException, NullTransitionException, NegativeToken {
 	    Transition t = new Transition();
 	    ArcSortantNormal arc = new ArcSortantNormal(1, new Place(0), t); // poids modifié pour éviter la confusion avec zéro
-	    t.add_to_arc_entrant(arc);
+	    try {
+			t.add_to_arc_entrant(arc);
+		} catch (ExistingArc e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 
 	    String expectedOutput = "transition, 0 arc(s) sortant(s) // arc(s) entrant(s) ==> 1 arc(s) entrant(s) normal / 0 arc(s) entrant(s) videur / 0 arc(s) entrant(s) zero .";
 	    String result = t.toString();
@@ -37,7 +43,12 @@ class TestsAffichage {
 	    Transition t = new Transition();
 	    ArcEntrant arc = new ArcEntrant(1, new Place(0),t); // Ajout d'un arc sortant avec un poids
 
-	    t.add_to_arc_sortant(arc);
+	    try {
+			t.add_to_arc_sortant(arc);
+		} catch (ExistingArc e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 
 	    String expectedOutput = "transition, 1 arc(s) sortant(s) ";
 	    String result = t.toString();
@@ -50,11 +61,21 @@ class TestsAffichage {
 
 	    // Création et ajout d'un arc entrant
 	    ArcSortantNormal arcEntrant = new ArcSortantNormal(1, new Place(2), t);
-	    t.add_to_arc_entrant(arcEntrant);
+	    try {
+			t.add_to_arc_entrant(arcEntrant);
+		} catch (ExistingArc e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 
 	    // Création et ajout d'un arc sortant
 	    ArcEntrant arcSortant = new ArcEntrant(1, new Place(0),t);
-	    t.add_to_arc_sortant(arcSortant);
+	    try {
+			t.add_to_arc_sortant(arcSortant);
+		} catch (ExistingArc e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
 
 	    // Résultat attendu (format d'affichage attendu)
 	    String expectedOutput = "transition, 1 arc(s) sortant(s) // arc(s) entrant(s) ==> 1 arc(s) entrant(s) normal / 0 arc(s) entrant(s) videur / 0 arc(s) entrant(s) zero .";
