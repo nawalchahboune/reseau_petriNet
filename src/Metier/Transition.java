@@ -10,18 +10,19 @@ public class Transition {
 	private ArrayList<ArcEntrant> arcsSortants;
 	
 	public Transition() {
-		this.tirable = false;
+		//this.tirable = false;
 		this.arcsEntrants = new ArrayList<ArcSortant>();
 		this.arcsSortants = new ArrayList<ArcEntrant>();
 	}
 	
-	public Transition(boolean tirable, ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
+	public Transition( ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
 		//A commenter porte à confusion
-		this.tirable = tirable;
+
 		this.arcsSortants = arcsEntrants;
 		this.arcsEntrants = arcsSortants;
 	}
 	public void setTirable(boolean tirable) {
+		//
 		this.tirable=tirable;
 	}
 	public void setTirable() {

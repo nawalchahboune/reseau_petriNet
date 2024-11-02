@@ -11,6 +11,9 @@ public class Place {
 	
 	public Place() {
 		this.jetons=0;
+		this.arcsSortants = new ArrayList<ArcSortant>();
+		this.arcsEntrants = new ArrayList<ArcEntrant>();
+		
 	}
 	public Place(int jetons) throws NegativeToken{
 		if(jetons>=0) {

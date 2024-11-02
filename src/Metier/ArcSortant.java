@@ -15,7 +15,6 @@ public abstract class ArcSortant extends Arc{
 			throw new NullTransitionException();
 		}
 	}
-	
 	public abstract void update_jeton_place() throws NegativeToken;
 	
 	public abstract boolean arcIsFireable();

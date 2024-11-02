@@ -20,6 +20,7 @@ public class ArcSortantNormal extends ArcSortant {
 			throw new NullTransitionException();
 		}
 	}
+
 	
 	public void setPoids(int poids) {
 		this.poids = poids;
