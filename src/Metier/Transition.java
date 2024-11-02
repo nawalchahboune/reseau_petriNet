@@ -2,6 +2,8 @@ package Metier;
 
 import java.util.ArrayList;
 
+import Exceptions.ExistingArc;
+
 public class Transition {
 	private boolean tirable;
 	private ArrayList<ArcSortant> arcsEntrants;
@@ -43,12 +45,22 @@ public class Transition {
 		
 		return arcsEntrants  ;
 	}
-	public void add_to_arc_sortant(ArcEntrant arcSortant) {
-		this.arcsSortants.add(arcSortant);
+	public void add_to_arc_sortant(ArcEntrant arcSortant) throws ExistingArc{
+		if(this.arcsSortants.contains(arcSortant)) {
+			throw new ExistingArc();
+		}
+		else {
+			this.arcsSortants.add(arcSortant);
+		}
 		
 	}
-	public void add_to_arc_entrant(ArcSortant arc) {
-		this.arcsEntrants.add(arc);
+	public void add_to_arc_entrant(ArcSortant arc) throws ExistingArc {
+		if(this.arcsSortants.contains(arc)) {
+			throw new ExistingArc();
+		}
+		else {
+			this.arcsEntrants.add(arc);
+		}
 		
 	}
 	public void remove_from_arc_Sortant(ArcEntrant arcSortant) {

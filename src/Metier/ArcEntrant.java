@@ -1,11 +1,17 @@
 package Metier;
 
+import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
 
 public class ArcEntrant extends Arc {
 	private int poids;
+	public ArcEntrant() {
+		super();
+		this.poids = 0;
+		
+	}
 	public ArcEntrant(int poids ,Place place, Transition transition) throws NullPlaceException, NullTransitionException {
 		
 		super(place, transition);
@@ -40,7 +46,12 @@ public class ArcEntrant extends Arc {
 
 	@Override
 	public void add_arc_to_transition() {
-		this.getTransition().add_to_arc_sortant(this);
+		try {
+			this.getTransition().add_to_arc_sortant(this);
+		}catch(ExistingArc e) {
+			e.getMessage();
+		}
+		
 	}
 
 	@Override
@@ -52,5 +63,18 @@ public class ArcEntrant extends Arc {
 	public String toString() {
 		return "arc simple poids "+ this.getPoids() +
 				"( transition vers place avec  "+this.getPlace().getJetons()+" jetons";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true; 
+	    if (obj == null || getClass() != obj.getClass()) return false;
+
+	    ArcEntrant other = (ArcEntrant) obj;
+
+	    return this.poids == other.poids &&
+	           (this.getPlace() != null && this.getPlace().equals(other.getPlace())) &&
+	           (this.getTransition() != null && this.getTransition().equals(other.getTransition()));
+
 	}
 }

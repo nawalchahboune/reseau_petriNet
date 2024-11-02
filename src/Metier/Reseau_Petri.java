@@ -1,9 +1,8 @@
 package Metier;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
@@ -41,7 +40,10 @@ public class Reseau_Petri implements IReseauPetri {
 	
 */
 	@Override
-	public void ajouter_Arc(Arc arc) throws NullTArcException{
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc{
+		if(this.arcs.contains(arc)) {
+			throw new ExistingArc();
+		}
 		if(arc!=null) {
 			this.arcs.add(arc);
 			if(arc instanceof ArcSortant) {

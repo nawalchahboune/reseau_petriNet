@@ -3,8 +3,15 @@ package Metier;
 public abstract class Arc {
 	private Place place;
 	private Transition transition;
+
+	
+	public Arc() {
+		this.place = new Place();
+		this.transition = new Transition();
+	}
+	
 	public Arc(Place place, Transition transition) {
-		super();
+		
 		this.place = place;
 		this.transition = transition;
 	}
