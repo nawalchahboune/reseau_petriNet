@@ -8,8 +8,8 @@ public class Main {
 		Transition t0 = new Transition();
 		Place p0 = new Place(10);
 		Place p1 = new Place(2);
-		//network.ajouter_Place(p0);
-		//network.ajouter_Place(p1);
+		network.ajouter_Place(p0);
+		network.ajouter_Place(p1);
 		//Place p2 = new Place(0);
 		//Place p3 = new Place(1);
 		
