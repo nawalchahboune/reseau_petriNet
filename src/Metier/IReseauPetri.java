@@ -1,8 +1,15 @@
 package Metier;
 
 import Exceptions.*;
+import Exceptions.ExistingArc;
+import Exceptions.NegativeToken;
+import Exceptions.NullPlaceException;
+import Exceptions.NullTArcException;
+import Exceptions.NullTransitionException;
+import Exceptions.UnknownPlaceException;
+import Exceptions.UnknownTransitionException;
 public interface IReseauPetri {
-	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc;
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException;
 	public void supprimer_Arc(Arc arc);
 	public void ajouter_Place(Place place) throws NullPlaceException , ExistingPlace;
 	public void supprimer_Place(Place place);

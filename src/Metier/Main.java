@@ -6,7 +6,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			
+		Reseau_Petri network = new Reseau_Petri();
+		Transition t0 = new Transition();
+		Place p0 = new Place(10);
+		Place p1 = new Place(2);
+		network.ajouter_Place(p0);
+		network.ajouter_Place(p1);
+		//Place p2 = new Place(0);
+		//Place p3 = new Place(1);
 		
 		//ArcZero arc2= new ArcZero(p2,t0);
 		//ArcVideur arc3= new ArcVideur(p3,t0);
@@ -48,8 +55,8 @@ public class Main {
 		//System.out.println("La place p0 contient "+ p0.getJetons()+" jetons");
 		//System.out.println("La place p2 contient "+ p2.getJetons()+" jetons");
 		//System.out.println("La place p3 contient "+ p3.getJetons()+" jetons");
-			Reseau_Petri network = new Reseau_Petri();
-			Place p1 = new Place(0);
+			//Reseau_Petri network = new Reseau_Petri();
+		//	Place p1 = new Place(0);
 			Place p2 = new Place(1);
 			Transition t1= new Transition();
 			ArcSortant arcp1t1= new ArcSortantNormal(1, p1, t1);

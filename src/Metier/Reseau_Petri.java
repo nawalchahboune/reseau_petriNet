@@ -9,6 +9,8 @@ import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
 import Exceptions.NullTransitionException;
+import Exceptions.UnknownPlaceException;
+import Exceptions.UnknownTransitionException;
 
 public class Reseau_Petri implements IReseauPetri {
 	private ArrayList<Arc> arcs;
@@ -20,11 +22,7 @@ public class Reseau_Petri implements IReseauPetri {
 		this.places = new ArrayList<Place>();
 		this.transitions = new ArrayList<Transition>();
 	}
-	
-	
-	public ArrayList<Arc> getArcs() {
-		return arcs;
-	}
+
 
 
 	public void setArcs(ArrayList<Arc> arcs) {
@@ -32,19 +30,12 @@ public class Reseau_Petri implements IReseauPetri {
 	}
 
 
-	public ArrayList<Place> getPlaces() {
-		return places;
-	}
-
 
 	public void setPlaces(ArrayList<Place> places) {
 		this.places = places;
 	}
 
 
-	public ArrayList<Transition> getTransitions() {
-		return transitions;
-	}
 
 
 	public void setTransitions(ArrayList<Transition> transitions) {
@@ -92,8 +83,7 @@ public class Reseau_Petri implements IReseauPetri {
 		        
 		 }
 	}
-	
-/*	public ArrayList<Arc> getArcs(){
+public ArrayList<Arc> getArcs(){
 		return this.arcs;
 	}
 	
@@ -106,14 +96,21 @@ public class Reseau_Petri implements IReseauPetri {
 	}
 	
 	
-*/
+
 	@Override
-	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc{
-		//zid ta f reseau
-		if(this.arcs.contains(arc)) {
+
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException{
+		if(!this.places.contains(arc.getPlace())) {
+			throw new UnknownPlaceException();
+		}
+		else if (!this.transitions.contains(arc.getTransition())) {
+			throw new UnknownTransitionException();
+		}
+		else if(this.arcs.contains(arc)) {
 			throw new ExistingArc();
 		}
-		if(arc!=null) {
+		/*
+		else if(arc!=null) {
 			this.arcs.add(arc);
 			if(arc instanceof ArcSortant) {
 				Transition t = arc.getTransition();
@@ -142,6 +139,7 @@ public class Reseau_Petri implements IReseauPetri {
 		}else {
 			throw new NullTArcException();
 		}
+		*/
 	}
 
 	@Override
@@ -203,8 +201,7 @@ public class Reseau_Petri implements IReseauPetri {
 	}
 
 	@Override
-
-	public void fire(Transition transition) throws NullTransitionException , NegativeToken {
+    public void fire(Transition transition) throws NullTransitionException , NegativeToken {
 		//type ArcSortant réfère à un arc sortant de la place associé; 
 		//donc un arc entrant de la transition et vis vers ca
 		if(transition!=null) {
@@ -248,7 +245,15 @@ public class Reseau_Petri implements IReseauPetri {
 	public void fireAll(){
 		//ArrayList<Transition> transitionTirables= new ArrayList();
 		for (Transition transition : this.transitions) {
-		//	fire(transition);
+			try {
+				fire(transition);
+			} catch (NullTransitionException e) {
+				// TODO Auto-generated catch block
+				e.getMessage();
+			} catch (NegativeToken e) {
+				// TODO Auto-generated catch block
+				e.getMessage();
+			}
 			//transition.setTirable();
 			//if(transition.isTirable()) {
 				//transitionTirables.add(transition);
