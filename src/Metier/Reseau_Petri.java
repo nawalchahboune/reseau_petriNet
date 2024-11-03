@@ -161,7 +161,7 @@ public ArrayList<Arc> getArcs(){
 		//ArrayList<Transition> transitionTirables= new ArrayList();
 		for (Transition transition : this.transitions) {
 			try {
-				fire(transition);
+				this.fire(transition);
 			} catch (NullTransitionException e) {
 				// TODO Auto-generated catch block
 				e.getMessage();

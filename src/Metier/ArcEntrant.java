@@ -32,7 +32,7 @@ public class ArcEntrant extends Arc {
     
 	public void update_jetons_place() throws NegativeToken {
 		int a = this.getPlace().getJetons();
-		if(a + this.poids>=0) {
+		if((a + this.poids>=0)) {
 			this.getPlace().setJetons(a + this.poids);
 		}else {
 			throw new NegativeToken();
