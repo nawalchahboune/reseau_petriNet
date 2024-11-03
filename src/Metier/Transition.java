@@ -12,6 +12,7 @@ public class Transition {
 	private ArrayList<ArcEntrant> arcsSortants;
 	
 	public Transition() {
+
 		this.name = "Transition_" +Integer.toString(nb);
 		this.tirable = false;
 		this.arcsEntrants = new ArrayList<ArcSortant>();
@@ -19,14 +20,16 @@ public class Transition {
 		nb++;
 	}
 	
-	public Transition(boolean tirable, ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
+	/* blic Transition( ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
 		//A commenter porte à confusion
+
 		this.name = "Transition_" +Integer.toString(nb);
 		this.tirable = tirable;
 		this.arcsSortants = arcsEntrants;
 		this.arcsEntrants = arcsSortants;
 		nb++;
 	}
+	*/
 	
 	public String getName() {
 		return this.name;
@@ -38,6 +41,7 @@ public class Transition {
 	
 	
 	public void setTirable(boolean tirable) {
+		//
 		this.tirable=tirable;
 	}
 	public void setTirable() {

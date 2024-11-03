@@ -24,7 +24,7 @@ class TestsAffichage {
 	}
 
 	@Test
-	public void testAffocherTransitionAvecArcsEntrants() throws NullPlaceException, NullTransitionException, NegativeToken {
+	public void testAffocherTransitionAvecArcsEntrants() throws NullPlaceException, NullTransitionException, NegativeToken , ExistingArc {
 	    Transition t = new Transition();
 	    ArcSortantNormal arc = new ArcSortantNormal(1, new Place(0), t); // poids modifié pour éviter la confusion avec zéro
 	    try {
@@ -39,7 +39,7 @@ class TestsAffichage {
 	    assertEquals(expectedOutput, result, "L'affichage de la transition avec un arc entrant doit correspondre au format attendu.");
 	}
 	@Test
-	public void testAfficherTransitionAvecArcsSortants() throws NullPlaceException, NullTransitionException, NegativeToken {
+	public void testAfficherTransitionAvecArcsSortants() throws   ExistingArc , NullPlaceException, NullTransitionException, NegativeToken {
 	    Transition t = new Transition();
 	    ArcEntrant arc = new ArcEntrant(1, new Place(0),t); // Ajout d'un arc sortant avec un poids
 
@@ -55,7 +55,7 @@ class TestsAffichage {
 	    assertEquals(expectedOutput, result, "L'affichage de la transition avec un arc sortant doit correspondre au format attendu.");
 	}
 	@Test
-	public void testAfficherTransitionAvecArcsEntrantsEtSortants() throws NullPlaceException, NullTransitionException, NegativeToken {
+	public void testAfficherTransitionAvecArcsEntrantsEtSortants() throws NullPlaceException, NullTransitionException, ExistingArc, NegativeToken {
 	    // Création de la transition
 	    Transition t = new Transition();
 

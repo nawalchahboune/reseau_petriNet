@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Exceptions.ExistingArc;
+import Exceptions.ExistingPlace;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
@@ -77,7 +78,7 @@ public class TestActivationReseauPetri {
 		network.fireAll();
 	}
 	@Test
-	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
 		ArcSortantNormal arc0 = new ArcSortantNormal(1,p3, t0);
@@ -88,7 +89,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS2() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS2() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p1);
 		network.ajouter_Tarnsition(t0);
 		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
@@ -99,7 +100,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS3() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS3() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p4);
 		network.ajouter_Tarnsition(t0);
 		ArcSortantNormal arc0 = new ArcSortantNormal(3,p4, t0);
@@ -110,7 +111,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS4() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS4() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
 		ArcEntrant arc0 = new ArcEntrant(1,p3, t0);
@@ -121,7 +122,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS5() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS5() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
 		ArcEntrant arc0 = new ArcEntrant(2,p3, t0);
@@ -131,7 +132,7 @@ public class TestActivationReseauPetri {
 		assertEquals(2,p3.getJetons());
 	}
 	@Test
-	void testRS6() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS6() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p1);
 		network.ajouter_Tarnsition(t0);
 		ArcVideur arc0 = new ArcVideur (p1, t0);
@@ -142,7 +143,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS7() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS7() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
@@ -156,7 +157,7 @@ public class TestActivationReseauPetri {
 		assertEquals(2,p1.getJetons());
 	}
 	@Test
-	void testRS8() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken {
+	void testRS8() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);

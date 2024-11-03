@@ -2,6 +2,7 @@ package Metier;
 
 import java.util.ArrayList;
 
+import Exceptions.ExceedExistingToken;
 import Exceptions.NegativeToken;
 
 public class Place {
@@ -13,6 +14,9 @@ public class Place {
 	public Place() {
 	
 		this.jetons=0;
+		this.arcsSortants = new ArrayList<ArcSortant>();
+		this.arcsEntrants = new ArrayList<ArcEntrant>();
+
 	
 	}
 	public Place(int jetons) throws NegativeToken{
@@ -38,6 +42,15 @@ public class Place {
 		}
 		else {
 			throw new NegativeToken();
+		}
+	}
+
+	public void enleverJetons(int jetons) throws ExceedExistingToken {
+		if(this.getJetons()-jetons<0) {
+			throw new ExceedExistingToken();
+		}
+		else { 
+			this.jetons-= jetons;
 		}
 	}
 
@@ -89,6 +102,17 @@ public class Place {
 		+ Szero + " arc(s) sortant(s) zero ///" 
 		+ this.getArcsEntrants().size() +" arc(s) entrant(s)  ";
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true; 
+	    if (obj == null || getClass() != obj.getClass()) return false;
+
+	    Place other = (Place) obj;
+
+	    return this.jetons == other.getJetons() &&
+	           (this.getArcsEntrants() != null && this.getArcsEntrants().equals(other.getArcsEntrants())) &&
+	           (this.getArcsSortants() != null && this.getArcsSortants().equals(other.getArcsSortants()));
+
+	}
 
 }
