@@ -6,6 +6,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
+			Transition tt= new Transition() ;
+			System.out.println(tt.toString());
 		Reseau_Petri network = new Reseau_Petri();
 		Transition t0 = new Transition();
 		Place p0 = new Place(10);
@@ -90,6 +92,7 @@ public class Main {
 			
 			//Arc arc0 = new ArcEntrant(2,p0, t0);
 			//Arc arc1 = new ArcSortantNormal(1,p1,t0);
+			
 	}
 			
 		catch (Exception e) {

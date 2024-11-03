@@ -5,6 +5,7 @@ import java.util.Iterator;
 import Exceptions.ExceedExistingToken;
 import Exceptions.ExistingArc;
 import Exceptions.ExistingPlace;
+import Exceptions.ExistingTransition;
 import Exceptions.NegativeToken;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
@@ -100,46 +101,53 @@ public ArrayList<Arc> getArcs(){
 	@Override
 
 	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException{
-		if(!this.places.contains(arc.getPlace())) {
-			throw new UnknownPlaceException();
-		}
-		else if (!this.transitions.contains(arc.getTransition())) {
-			throw new UnknownTransitionException();
-		}
-		else if(this.arcs.contains(arc)) {
-			throw new ExistingArc();
-		}
-		/*
-		else if(arc!=null) {
+		
+		if(arc!=null) {
+			if(!this.places.contains(arc.getPlace())) {
+				throw new UnknownPlaceException();
+			}
+			else if (!this.transitions.contains(arc.getTransition())) {
+				throw new UnknownTransitionException();
+			}
+			else if(this.arcs.contains(arc)) {
+				throw new ExistingArc();
+			}
+			/*
+			else if(arc!=null) {
+				this.arcs.add(arc);
+				if(arc instanceof ArcSortant) {
+					Transition t = arc.getTransition();
+					Place p = arc.getPlace();
+					t.add_to_arc_entrant((ArcSortant)arc);
+					p.add_to_arc_sortant((ArcSortant)arc);
+					if(!transitions.contains(t)) {
+						transitions.add(t);
+					}
+					if(!places.contains(p)) {
+						places.add(p);
+					}
+				}
+				if(arc instanceof ArcEntrant) {
+					Transition t = arc.getTransition();
+					Place p = arc.getPlace();
+					if(!transitions.contains(t)) {
+						transitions.add(t);
+					}
+					if(!places.contains(p)) {
+						places.add(p);
+					}
+					arc.getTransition().add_to_arc_sortant((ArcEntrant)arc);
+					arc.getPlace().add_to_arc_entrant((ArcEntrant)arc);
+				}
+			}else {
+				throw new NullTArcException();
+			}
+			*/
 			this.arcs.add(arc);
-			if(arc instanceof ArcSortant) {
-				Transition t = arc.getTransition();
-				Place p = arc.getPlace();
-				t.add_to_arc_entrant((ArcSortant)arc);
-				p.add_to_arc_sortant((ArcSortant)arc);
-				if(!transitions.contains(t)) {
-					transitions.add(t);
-				}
-				if(!places.contains(p)) {
-					places.add(p);
-				}
-			}
-			if(arc instanceof ArcEntrant) {
-				Transition t = arc.getTransition();
-				Place p = arc.getPlace();
-				if(!transitions.contains(t)) {
-					transitions.add(t);
-				}
-				if(!places.contains(p)) {
-					places.add(p);
-				}
-				arc.getTransition().add_to_arc_sortant((ArcEntrant)arc);
-				arc.getPlace().add_to_arc_entrant((ArcEntrant)arc);
-			}
-		}else {
-			throw new NullTArcException();
 		}
-		*/
+		else { throw new NullTArcException();
+		
+		}
 	}
 
 	@Override
@@ -181,9 +189,13 @@ public ArrayList<Arc> getArcs(){
 	}
 
 	@Override
-	public void ajouter_Tarnsition(Transition transition) throws NullTransitionException {
+	public void ajouter_Tarnsition(Transition transition) throws NullTransitionException , ExistingTransition {
 		if(transition!=null) {
-			this.transitions.add(transition);
+			if(!transitions.contains(transition)) {
+				this.transitions.add(transition);
+			}else {
+				throw new ExistingTransition();
+			}
 		}
 		else {
 			throw new NullTransitionException();
@@ -201,7 +213,7 @@ public ArrayList<Arc> getArcs(){
 	}
 
 	@Override
-    public void fire(Transition transition) throws NullTransitionException , NegativeToken {
+    public void fire(Transition transition) throws NullTransitionException, NegativeToken  {
 		//type ArcSortant réfère à un arc sortant de la place associé; 
 		//donc un arc entrant de la transition et vis vers ca
 		if(transition!=null) {
@@ -219,20 +231,12 @@ public ArrayList<Arc> getArcs(){
 			if(transition.isTirable()) {
 				ArrayList<ArcEntrant> arcsSortant= transition.getArcsSortants();
 				for(ArcEntrant arcSort : arcsSortant) {
-					if(true) {
 						arcSort.update_jetons_place();
-					}
-					else {
-						throw new NegativeToken();
-					}
+					
 				}
 				for (ArcSortant arcEnt : arcsEntrant) {
-					if(true) {
 						arcEnt.update_jeton_place();
-					}
-					else {
-						throw new NegativeToken();
-					}
+					
 				}
 			}
 		}else {
@@ -243,28 +247,32 @@ public ArrayList<Arc> getArcs(){
 
 	@Override
 	public void fireAll(){
-		//ArrayList<Transition> transitionTirables= new ArrayList();
-		for (Transition transition : this.transitions) {
+	
+		while(transitions!= null) {
+			for (Transition transition : this.transitions) {
+			
 			try {
 				fire(transition);
 			} catch (NullTransitionException e) {
-				// TODO Auto-generated catch block
+				
 				e.getMessage();
 			} catch (NegativeToken e) {
-				// TODO Auto-generated catch block
+				
 				e.getMessage();
 			}
-			//transition.setTirable();
-			//if(transition.isTirable()) {
-				//transitionTirables.add(transition);
-			//}
-		//}
-		//while (transitionTirables.size()>0) {
-			
+		}
 			
 		}
 		
+		
 	}
+
+	//transition.setTirable();
+	//if(transition.isTirable()) {
+		//transitionTirables.add(transition);
+	//}
+//}
+//while (transitionTirables.size()>0) {
 	@Override
 	public String toString() {
 		System.out.println("xh?");

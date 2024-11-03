@@ -2,13 +2,14 @@ package Metier;
 
 import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
+import Exceptions.NegativeWeight;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
 
 public class ArcEntrant extends Arc {
 	private int poids;
 	
-	public ArcEntrant(int poids ,Place place, Transition transition) throws NullPlaceException, NullTransitionException {
+	public ArcEntrant(int poids ,Place place, Transition transition) throws NullPlaceException, NegativeWeight, NullTransitionException, ExistingArc {
 		
 		super(place, transition);
 		this.poids=poids;
@@ -18,6 +19,11 @@ public class ArcEntrant extends Arc {
 		if(transition==null) {
 			throw new NullTransitionException();
 		}
+		if(poids<0) {
+			throw new NegativeWeight();
+		}
+		transition.add_to_arc_sortant(this);
+		place.add_to_arc_entrant(this);
 		
 	}
 	

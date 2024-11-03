@@ -20,7 +20,7 @@ public class Transition {
 		nb++;
 	}
 	
-	public Transition( ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
+	/* blic Transition( ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
 		//A commenter porte à confusion
 
 		this.name = "Transition_" +Integer.toString(nb);
@@ -29,6 +29,7 @@ public class Transition {
 		this.arcsEntrants = arcsSortants;
 		nb++;
 	}
+	*/
 	
 	public String getName() {
 		return this.name;

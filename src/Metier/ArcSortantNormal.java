@@ -2,6 +2,7 @@ package Metier;
 
 import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
+import Exceptions.NegativeWeight;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
 
@@ -9,7 +10,7 @@ public class ArcSortantNormal extends ArcSortant {
 	private int poids;
 	
 	
-	public ArcSortantNormal(int poids,Place place, Transition transition) throws NullPlaceException, NullTransitionException {
+	public ArcSortantNormal(int poids,Place place, Transition transition) throws NullPlaceException, NegativeWeight, NullTransitionException, ExistingArc {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
 		this.poids=poids;
@@ -19,6 +20,12 @@ public class ArcSortantNormal extends ArcSortant {
 		if(transition==null) {
 			throw new NullTransitionException();
 		}
+		if(poids<0) {
+			throw new NegativeWeight();
+		}
+		//il faut ajouter l'arc au liste des arcs entrants de la transition associé !
+		transition.add_to_arc_entrant(this);
+		place.add_to_arc_sortant(this);
 	}
 
 	

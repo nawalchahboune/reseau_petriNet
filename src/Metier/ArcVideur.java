@@ -7,7 +7,7 @@ import Exceptions.NullTransitionException;
 
 public class ArcVideur extends ArcSortant{
 	private boolean active;
-	public ArcVideur(Place place, Transition transition)  throws NullPlaceException , NullTransitionException{
+	public ArcVideur(Place place, Transition transition)  throws NullPlaceException , NullTransitionException, ExistingArc{
 		// TODO Auto-generated constructor stub
 		super(place, transition);
 		if(place==null) {
@@ -16,6 +16,8 @@ public class ArcVideur extends ArcSortant{
 		if(transition==null) {
 			throw new NullTransitionException();
 		}
+		transition.add_to_arc_entrant(this);
+		place.add_to_arc_sortant(this);
 	}
 	@Override
 	public void update_jeton_place() throws NegativeToken {

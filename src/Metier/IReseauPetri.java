@@ -13,7 +13,7 @@ public interface IReseauPetri {
 	public void supprimer_Arc(Arc arc);
 	public void ajouter_Place(Place place) throws NullPlaceException , ExistingPlace;
 	public void supprimer_Place(Place place);
-	public void ajouter_Tarnsition(Transition transition) throws NullTransitionException;
+	public void ajouter_Tarnsition(Transition transition) throws NullTransitionException , ExistingTransition;
 	public void supprimer_Tarnsition(Transition transition);
 	public void ajouterJetons(Place place , int jetons) throws NegativeToken , NullPlaceException ;
 	public void enleverJetons(Place place , int jetons) throws NegativeToken,ExceedExistingToken, NullPlaceException ;
