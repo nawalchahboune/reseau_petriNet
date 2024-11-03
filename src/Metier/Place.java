@@ -5,21 +5,26 @@ import java.util.ArrayList;
 import Exceptions.NegativeToken;
 
 public class Place {
+	
 	private int jetons;
 	private ArrayList<ArcSortant> arcsSortants;
 	private ArrayList<ArcEntrant> arcsEntrants;
 	
 	public Place() {
+	
 		this.jetons=0;
 		this.arcsSortants = new ArrayList<ArcSortant>();
 		this.arcsEntrants = new ArrayList<ArcEntrant>();
-		
+
+	
 	}
 	public Place(int jetons) throws NegativeToken{
 		if(jetons>=0) {
 			this.jetons = jetons;
+			
 			this.arcsEntrants = new ArrayList<ArcEntrant>();
 			this.arcsSortants = new ArrayList<ArcSortant>();
+			 
 		}else {
 			throw new NegativeToken();
 		}
@@ -38,6 +43,7 @@ public class Place {
 			throw new NegativeToken();
 		}
 	}
+
 	public  ArrayList<ArcEntrant> getArcsEntrants() {
 		return  arcsEntrants ;
 		

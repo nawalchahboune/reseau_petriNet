@@ -58,6 +58,7 @@ public class Main {
 			ArcSortant arcp2t2 = new ArcSortantNormal(1, p2, t2);
 			
 			
+			
 			network.ajouter_Place(p1);
 			network.ajouter_Place(p2);
 			network.ajouter_Tarnsition(t1);

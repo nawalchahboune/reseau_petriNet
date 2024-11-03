@@ -5,22 +5,40 @@ import java.util.ArrayList;
 import Exceptions.ExistingArc;
 
 public class Transition {
+	private static int nb;
+	private String name;
 	private boolean tirable;
 	private ArrayList<ArcSortant> arcsEntrants;
 	private ArrayList<ArcEntrant> arcsSortants;
 	
 	public Transition() {
-		//this.tirable = false;
+
+		this.name = "Transition_" +Integer.toString(nb);
+		this.tirable = false;
 		this.arcsEntrants = new ArrayList<ArcSortant>();
 		this.arcsSortants = new ArrayList<ArcEntrant>();
+		nb++;
 	}
 	
 	public Transition( ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
 		//A commenter porte à confusion
 
+		this.name = "Transition_" +Integer.toString(nb);
+		this.tirable = tirable;
 		this.arcsSortants = arcsEntrants;
 		this.arcsEntrants = arcsSortants;
+		nb++;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 	public void setTirable(boolean tirable) {
 		//
 		this.tirable=tirable;
