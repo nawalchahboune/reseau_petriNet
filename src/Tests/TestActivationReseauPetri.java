@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import Exceptions.ExistingArc;
 import Exceptions.ExistingPlace;
+import Exceptions.ExistingTransition;
 import Exceptions.NegativeToken;
+import Exceptions.NegativeWeight;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
 import Exceptions.NullTransitionException;
@@ -73,12 +75,12 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS0() throws NullTransitionException {
+	void testRS0() throws NullTransitionException, ExistingTransition {
 		network.ajouter_Tarnsition(t0);
 		network.fireAll();
 	}
 	@Test
-	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
 		ArcSortantNormal arc0 = new ArcSortantNormal(1,p3, t0);
@@ -89,7 +91,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS2() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS2() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Tarnsition(t0);
 		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
@@ -100,7 +102,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS3() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS3() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p4);
 		network.ajouter_Tarnsition(t0);
 		ArcSortantNormal arc0 = new ArcSortantNormal(3,p4, t0);
@@ -111,7 +113,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS4() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS4() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition, NegativeWeight {
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
 		ArcEntrant arc0 = new ArcEntrant(1,p3, t0);
@@ -122,7 +124,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS5() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS5() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition, NegativeWeight {
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
 		ArcEntrant arc0 = new ArcEntrant(2,p3, t0);
@@ -132,7 +134,7 @@ public class TestActivationReseauPetri {
 		assertEquals(2,p3.getJetons());
 	}
 	@Test
-	void testRS6() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS6() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Tarnsition(t0);
 		ArcVideur arc0 = new ArcVideur (p1, t0);
@@ -143,7 +145,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS7() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS7() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition, NegativeWeight {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
@@ -157,7 +159,7 @@ public class TestActivationReseauPetri {
 		assertEquals(2,p1.getJetons());
 	}
 	@Test
-	void testRS8() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace {
+	void testRS8() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
@@ -172,7 +174,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP0() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP0() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p4);
@@ -206,7 +208,7 @@ public class TestActivationReseauPetri {
 	 * 03/11/2024 16:58 : les jetons des places sortantes sont mis à jour correctement
 	 */
 	@Test
-	void testARP1() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP1() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingPlace, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p4);
@@ -247,7 +249,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP2() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP2() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p4);
@@ -288,7 +290,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP3() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP3() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingPlace, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p4);
@@ -330,7 +332,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP4() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP4() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, ExistingTransition, NegativeWeight {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p4);
@@ -371,7 +373,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP5() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP5() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingPlace, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p3);
@@ -409,7 +411,7 @@ public class TestActivationReseauPetri {
 	
 	
 	@Test
-	void testARP6() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP6() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, ExistingTransition, NegativeWeight {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p4);
@@ -450,7 +452,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP7() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP7() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p4);
 		network.ajouter_Place(p3);
@@ -489,7 +491,7 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP8() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException {
+	void testARP8() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingTransition, ExistingPlace {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p2);
 		network.ajouter_Place(p3);

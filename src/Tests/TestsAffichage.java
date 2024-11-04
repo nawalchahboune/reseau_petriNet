@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import Exceptions.ExistingArc;
 import Exceptions.NegativeToken;
+import Exceptions.NegativeWeight;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTransitionException;
 import Metier.ArcEntrant;
@@ -24,7 +25,7 @@ class TestsAffichage {
 	}
 
 	@Test
-	public void testAffocherTransitionAvecArcsEntrants() throws NullPlaceException, NullTransitionException, NegativeToken , ExistingArc {
+	public void testAffocherTransitionAvecArcsEntrants() throws NullPlaceException, NullTransitionException, NegativeToken , ExistingArc, NegativeWeight {
 	    Transition t = new Transition();
 	    ArcSortantNormal arc = new ArcSortantNormal(1, new Place(0), t); // poids modifié pour éviter la confusion avec zéro
 	    try {
@@ -39,7 +40,7 @@ class TestsAffichage {
 	    assertEquals(expectedOutput, result, "L'affichage de la transition avec un arc entrant doit correspondre au format attendu.");
 	}
 	@Test
-	public void testAfficherTransitionAvecArcsSortants() throws   ExistingArc , NullPlaceException, NullTransitionException, NegativeToken {
+	public void testAfficherTransitionAvecArcsSortants() throws   ExistingArc , NullPlaceException, NullTransitionException, NegativeToken, NegativeWeight {
 	    Transition t = new Transition();
 	    ArcEntrant arc = new ArcEntrant(1, new Place(0),t); // Ajout d'un arc sortant avec un poids
 
@@ -55,7 +56,7 @@ class TestsAffichage {
 	    assertEquals(expectedOutput, result, "L'affichage de la transition avec un arc sortant doit correspondre au format attendu.");
 	}
 	@Test
-	public void testAfficherTransitionAvecArcsEntrantsEtSortants() throws NullPlaceException, NullTransitionException, ExistingArc, NegativeToken {
+	public void testAfficherTransitionAvecArcsEntrantsEtSortants() throws NullPlaceException, NullTransitionException, ExistingArc, NegativeToken, NegativeWeight {
 	    // Création de la transition
 	    Transition t = new Transition();
 
