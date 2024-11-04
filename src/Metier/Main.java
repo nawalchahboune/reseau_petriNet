@@ -2,9 +2,15 @@ package Metier;
 
 import java.util.ArrayList;
 
+import Exceptions.ExistingArc;
+import Exceptions.NegativeToken;
+import Exceptions.NegativeWeight;
+import Exceptions.NullPlaceException;
+import Exceptions.NullTransitionException;
+
 public class Main {
 
-	public static void main(String[] args) {
+	public static void maiin(String[] args) {
 		try {
 			Transition tt= new Transition() ;
 			System.out.println(tt.toString());
@@ -80,9 +86,9 @@ public class Main {
 			
 			
 			
-			System.out.println(network.getPlaces());
-			System.out.println(network.getTransitions());
-			System.out.println(network.getArcs());
+			//System.out.println(network.getPlaces());
+			//System.out.println(network.getTransitions());
+			//System.out.println(network.getArcs());
 			
 			
 			//Transition t0 = new Transition();
@@ -92,6 +98,10 @@ public class Main {
 			
 			//Arc arc0 = new ArcEntrant(2,p0, t0);
 			//Arc arc1 = new ArcSortantNormal(1,p1,t0);
+			System.out.println("ggg");
+			Transition t = new Transition();
+		    ArcSortantNormal arc = new ArcSortantNormal(1, new Place(0), t);
+		    System.out.println(t.toString());
 			
 	}
 			
@@ -101,5 +111,19 @@ public class Main {
 		
 		
 	}
-
+	
+		
+	
+public static void main(String[] args) {
+	
+	System.out.println("ggg");
+	Transition t = new Transition();
+    try {
+		ArcSortantNormal arc = new ArcSortantNormal(1, new Place(0), t);
+	} catch (NullPlaceException | NegativeWeight | NullTransitionException | ExistingArc | NegativeToken e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    System.out.println(t.toString());
+}
 }

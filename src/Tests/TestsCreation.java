@@ -56,6 +56,10 @@ class TestsCreation {
 	    assertEquals(0, network.getArcs().size(), "Le réseau de Petri doit être vide.");
 	}
 	
+	
+	//
+	
+	
 	//creation place
 	
 	@Test

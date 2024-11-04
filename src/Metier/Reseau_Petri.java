@@ -248,7 +248,7 @@ public ArrayList<Arc> getArcs(){
 	@Override
 	public void fireAll(){
 	
-		while(transitions!= null) {
+	//	while(transitions!= null) {
 			for (Transition transition : this.transitions) {
 			
 			try {
@@ -262,7 +262,7 @@ public ArrayList<Arc> getArcs(){
 			}
 		}
 			
-		}
+		//}
 		
 		
 	}

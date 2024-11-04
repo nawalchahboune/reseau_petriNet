@@ -25,58 +25,39 @@ class TestsAffichage {
 	}
 
 	@Test
-	public void testAffocherTransitionAvecArcsEntrants() throws NullPlaceException, NullTransitionException, NegativeToken , ExistingArc, NegativeWeight {
+	public void testAfficherTransitionAvecArcsEntrants() {
 	    Transition t = new Transition();
-	    ArcSortantNormal arc = new ArcSortantNormal(1, new Place(0), t); // poids modifié pour éviter la confusion avec zéro
-	    try {
-			t.add_to_arc_entrant(arc);
-		} catch (ExistingArc e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
+	    Place p  = assertDoesNotThrow(()-> new Place(0));
+	    ArcSortantNormal arc = assertDoesNotThrow(()-> new ArcSortantNormal(1, p, t)); // poids modifié pour éviter la confusion avec zéro
+	 
+	
 
 	    String expectedOutput = "transition, 0 arc(s) sortant(s) // arc(s) entrant(s) ==> 1 arc(s) entrant(s) normal / 0 arc(s) entrant(s) videur / 0 arc(s) entrant(s) zero .";
+
 	    String result = t.toString();
 	    assertEquals(expectedOutput, result, "L'affichage de la transition avec un arc entrant doit correspondre au format attendu.");
 	}
 	@Test
-	public void testAfficherTransitionAvecArcsSortants() throws   ExistingArc , NullPlaceException, NullTransitionException, NegativeToken, NegativeWeight {
+	public void testAfficherTransitionAvecArcsSortants() {
 	    Transition t = new Transition();
-	    ArcEntrant arc = new ArcEntrant(1, new Place(0),t); // Ajout d'un arc sortant avec un poids
+	    ArcEntrant arc = assertDoesNotThrow(()-> new ArcEntrant(1, new Place(0),t)); // Ajout d'un arc sortant avec un poids
 
-	    try {
-			t.add_to_arc_sortant(arc);
-		} catch (ExistingArc e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
 
 	    String expectedOutput = "transition, 1 arc(s) sortant(s) ";
 	    String result = t.toString();
 	    assertEquals(expectedOutput, result, "L'affichage de la transition avec un arc sortant doit correspondre au format attendu.");
 	}
 	@Test
-	public void testAfficherTransitionAvecArcsEntrantsEtSortants() throws NullPlaceException, NullTransitionException, ExistingArc, NegativeToken, NegativeWeight {
+	public void testAfficherTransitionAvecArcsEntrantsEtSortants() {
 	    // Création de la transition
 	    Transition t = new Transition();
 
 	    // Création et ajout d'un arc entrant
-	    ArcSortantNormal arcEntrant = new ArcSortantNormal(1, new Place(2), t);
-	    try {
-			t.add_to_arc_entrant(arcEntrant);
-		} catch (ExistingArc e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
-
+	    ArcSortantNormal arcEntrant =assertDoesNotThrow(()-> new ArcSortantNormal(1, new Place(2), t));
+	   
 	    // Création et ajout d'un arc sortant
-	    ArcEntrant arcSortant = new ArcEntrant(1, new Place(0),t);
-	    try {
-			t.add_to_arc_sortant(arcSortant);
-		} catch (ExistingArc e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
+	    ArcEntrant arcSortant = assertDoesNotThrow(()-> new ArcEntrant(1, new Place(0),t));
+	    
 
 	    // Résultat attendu (format d'affichage attendu)
 	    String expectedOutput = "transition, 1 arc(s) sortant(s) // arc(s) entrant(s) ==> 1 arc(s) entrant(s) normal / 0 arc(s) entrant(s) videur / 0 arc(s) entrant(s) zero .";

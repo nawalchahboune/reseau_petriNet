@@ -42,6 +42,7 @@ public class Transition {
 	
 	public void setTirable(boolean tirable) {
 		//
+		
 		this.tirable=tirable;
 	}
 	public void setTirable() {
@@ -55,6 +56,14 @@ public class Transition {
 		}
 	}
 	public boolean isTirable() {
+		tirable =true;
+		for (ArcSortant arcEntrant : arcsEntrants) {
+			//en  vérifie si l'arc est fireable; si il ne l'est pas transition est non plus tirable
+			if(!arcEntrant.arcIsFireable()) {
+				tirable =false;
+				break;
+			}
+		}
 		return tirable;
 	}
 	public  ArrayList<ArcEntrant> getArcsSortants() {

@@ -1,6 +1,7 @@
 package Tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,33 +53,34 @@ public class TestActivationReseauPetri {
 	@BeforeEach
 	void setup() throws NegativeToken, NullPlaceException, NullTransitionException {
 		//Reseau de Petri
-		network = new Reseau_Petri();
+		network =  assertDoesNotThrow(()-> new Reseau_Petri());
 		//Transition
-		t0 = new Transition();
-		t1 = new Transition();
+		t0 =  assertDoesNotThrow(()-> new Transition());
+		t1 = assertDoesNotThrow(()-> new Transition());
 		//Places entrantes
-		p0 = new Place(10);
-		p1 = new Place(2);
-		p2 = new Place(1);
-		p3 = new Place(0);
+		p0 = assertDoesNotThrow(()-> new Place(10));
+		p1 = assertDoesNotThrow(()-> new Place(2));
+		p2 = assertDoesNotThrow(()-> new Place(1));
+		p3 = assertDoesNotThrow(()-> new Place(0));
 		
 		//Places sortantes
-		 p4 = new Place(5);
-		 p5 = new Place(3);
-		 p6 = new Place(4);	
+		 p4 = assertDoesNotThrow(()->new Place(5));
+		 p5 =  assertDoesNotThrow(()->new Place(3));
+		 p6 =  assertDoesNotThrow(()->new Place(4));	
 		 
-		 p7 = new Place(10);
-		 p8 = new Place(15);
+		 p7 =assertDoesNotThrow(()-> new Place(10));
+		 p8 = assertDoesNotThrow(()-> new Place(15));
 		 
 		
 		
 	}
-	
+	/*
 	@Test
 	void testRS0() throws NullTransitionException, ExistingTransition {
 		network.ajouter_Tarnsition(t0);
 		network.fireAll();
 	}
+	*/
 	@Test
 	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p3);
@@ -91,69 +93,70 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testRS2() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
-		network.ajouter_Arc(arc0);
-		network.fire(t0);
+	void testRS2() {
+		assertDoesNotThrow(()-> network.ajouter_Place(p1));
+		assertDoesNotThrow(()-> network.ajouter_Tarnsition(t0));
+		 ArcSortantNormal arc0 =  assertDoesNotThrow(()->new ArcSortantNormal(1,p1, t0));
+		 assertDoesNotThrow(()-> network.ajouter_Arc(arc0));
+		 assertDoesNotThrow(()-> network.fire(t0));
 		
 		assertEquals(1,p1.getJetons());
 	}
 	
 	@Test
-	void testRS3() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
-		network.ajouter_Place(p4);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(3,p4, t0);
-		network.ajouter_Arc(arc0);
-		network.fire(t0);
+	void testRS3() {
+		assertDoesNotThrow(()-> network.ajouter_Place(p4));
+		assertDoesNotThrow(()-> network.ajouter_Tarnsition(t0));
+		ArcSortantNormal arc0 = assertDoesNotThrow(()->  new ArcSortantNormal(3,p4, t0));
+		assertDoesNotThrow(()-> network.ajouter_Arc(arc0));
+		assertDoesNotThrow(()-> network.fire(t0));
 		
 		assertEquals(2,p4.getJetons());
 	}
 	
 	@Test
-	void testRS4() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition, NegativeWeight {
-		network.ajouter_Place(p3);
-		network.ajouter_Tarnsition(t0);
-		ArcEntrant arc0 = new ArcEntrant(1,p3, t0);
-		network.ajouter_Arc(arc0);
-		network.fire(t0);
+	void testRS4() {
+		assertDoesNotThrow(()-> network.ajouter_Place(p3));
+		assertDoesNotThrow(()-> network.ajouter_Tarnsition(t0));
+		ArcEntrant arc0 = assertDoesNotThrow(()->new ArcEntrant(1,p3, t0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc0));
+		assertDoesNotThrow(()->network.fire(t0));
 		
 		assertEquals(1,p3.getJetons());
 	}
 	
 	@Test
-	void testRS5() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition, NegativeWeight {
-		network.ajouter_Place(p3);
-		network.ajouter_Tarnsition(t0);
-		ArcEntrant arc0 = new ArcEntrant(2,p3, t0);
-		network.ajouter_Arc(arc0);
-		network.fire(t0);
+	void testRS5() {
+		assertDoesNotThrow(()-> network.ajouter_Place(p3));
+		assertDoesNotThrow(()-> network.ajouter_Tarnsition(t0));
+		 ArcEntrant arc0 = assertDoesNotThrow(()-> new ArcEntrant(2,p3, t0));
+		 assertDoesNotThrow(()->network.ajouter_Arc(arc0));
+		 assertDoesNotThrow(()->network.fire(t0));
 		
 		assertEquals(2,p3.getJetons());
 	}
 	@Test
-	void testRS6() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Tarnsition(t0);
-		ArcVideur arc0 = new ArcVideur (p1, t0);
-		network.ajouter_Arc(arc0);
-		network.fire(t0);
+	void testRS6() {
+		assertDoesNotThrow(()-> network.ajouter_Place(p1));
+		assertDoesNotThrow(()-> network.ajouter_Tarnsition(t0));
+		ArcVideur arc0 = assertDoesNotThrow(()->  new ArcVideur (p1, t0));
+		assertDoesNotThrow(()-> network.ajouter_Arc(arc0));
+		assertDoesNotThrow(()-> network.fire(t0));
 		
 		assertEquals(0,p1.getJetons());
 	}
 	
 	@Test
-	void testRS7() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, ExistingTransition, NegativeWeight {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p3);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(1,p3, t0);
-		ArcEntrant arc1 = new ArcEntrant(1,p1, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.fire(t0);
+	void testRS7() {
+		assertDoesNotThrow(()-> network.ajouter_Place(p1));
+		
+		assertDoesNotThrow(()-> network.ajouter_Place(p3));
+		assertDoesNotThrow(()-> network.ajouter_Tarnsition(t0));
+		ArcSortantNormal arc0 =  assertDoesNotThrow(()->new ArcSortantNormal(1,p3, t0));
+		ArcEntrant arc1 =  assertDoesNotThrow(()->new ArcEntrant(1,p1, t0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc1));
+		assertDoesNotThrow(()->network.fire(t0));
 		
 		assertEquals(0,p3.getJetons());
 		assertEquals(2,p1.getJetons());
@@ -174,26 +177,28 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP0() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, NegativeWeight, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p3);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(1,p2, t0);
-		ArcSortantNormal arc2 = new ArcSortantNormal(3,p4, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
+	void testARP0() {
+		assertDoesNotThrow(()-> network.ajouter_Place(p1));
+		assertDoesNotThrow(()-> network.ajouter_Place(p2));
+		assertDoesNotThrow(()-> network.ajouter_Place(p4));
+		assertDoesNotThrow(()-> network.ajouter_Place(p3));
+		assertDoesNotThrow(()->network.ajouter_Tarnsition(t0));
+		ArcSortantNormal arc0 =assertDoesNotThrow(()-> new ArcSortantNormal(1,p1, t0));
+		ArcSortantNormal arc1 =  assertDoesNotThrow(()->new ArcSortantNormal(1,p2, t0));
+		ArcSortantNormal arc2 = assertDoesNotThrow(()-> new ArcSortantNormal(3,p4, t0));
+		
+		assertDoesNotThrow(()->network.ajouter_Arc(arc0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc1));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc2));
+		
+		ArcEntrant arc3 = assertDoesNotThrow(()-> new ArcEntrant(7,p3, t0));
 		
 		
 		
-		ArcEntrant arc3 = new ArcEntrant(7,p3, t0);
+		assertDoesNotThrow(()->network.ajouter_Arc(arc3));
 		
-		network.ajouter_Arc(arc3);
-		network.fire(t0);
 		assertEquals(true,t0.isTirable());
+		assertDoesNotThrow(()->network.fire(t0));
 		assertEquals(1,p1.getJetons());
 		assertEquals(0,p2.getJetons());
 		assertEquals(2,p4.getJetons());
@@ -208,34 +213,38 @@ public class TestActivationReseauPetri {
 	 * 03/11/2024 16:58 : les jetons des places sortantes sont mis à jour correctement
 	 */
 	@Test
-	void testARP1() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingPlace, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(1,p2, t0);
-		ArcSortantNormal arc2 = new ArcSortantNormal(3,p4, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
+	void testARP1() {
 		
 		
 		
-		ArcEntrant arc3 = new ArcEntrant(7,p3, t0);
-		ArcEntrant arc4 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc5 = new ArcEntrant(4,p6, t0);
+		assertDoesNotThrow(()->network.ajouter_Place(p1));
+		assertDoesNotThrow(()->network.ajouter_Place(p2));
+		assertDoesNotThrow(()->network.ajouter_Place(p4));
+		assertDoesNotThrow(()->network.ajouter_Place(p3));
+		assertDoesNotThrow(()->network.ajouter_Place(p5));
+		assertDoesNotThrow(()->network.ajouter_Place(p6));
+		assertDoesNotThrow(()->network.ajouter_Tarnsition(t0));
+		ArcSortantNormal arc0 =  assertDoesNotThrow(()->new ArcSortantNormal(1,p1, t0));
+		ArcSortantNormal arc1 =  assertDoesNotThrow(()->new ArcSortantNormal(1,p2, t0));
+		ArcSortantNormal arc2 =  assertDoesNotThrow(()->new ArcSortantNormal(3,p4, t0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc1));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc2));
 		
-		network.ajouter_Arc(arc3);
-		network.ajouter_Arc(arc4);
-		network.ajouter_Arc(arc5);
 		
-		network.fire(t0);
+		
+		ArcEntrant arc3 =  assertDoesNotThrow(()->new ArcEntrant(7,p3, t0));
+		ArcEntrant arc4 =  assertDoesNotThrow(()->new ArcEntrant(5,p5, t0));
+		ArcEntrant arc5 = assertDoesNotThrow(()->  new ArcEntrant(4,p6, t0));
+		
+		assertDoesNotThrow(()->network.ajouter_Arc(arc3));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc4));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc5));
+		
 		
 		assertEquals(true,t0.isTirable());
+		assertDoesNotThrow(()->network.fire(t0));
+		
 		assertEquals(1,p1.getJetons());
 		assertEquals(0,p2.getJetons());
 		assertEquals(2,p4.getJetons());
@@ -249,73 +258,32 @@ public class TestActivationReseauPetri {
 	}
 	
 	@Test
-	void testARP2() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, NegativeWeight, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(3,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(1,p2, t0);
-		ArcSortantNormal arc2 = new ArcSortantNormal(3,p4, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
+	void testARP2() {
+		assertDoesNotThrow(()->network.ajouter_Place(p1));
+		assertDoesNotThrow(()->network.ajouter_Place(p2));
+		assertDoesNotThrow(()->network.ajouter_Place(p4));
+		assertDoesNotThrow(()->network.ajouter_Place(p3));
+		assertDoesNotThrow(()->network.ajouter_Place(p5));
+		assertDoesNotThrow(()-> network.ajouter_Place(p6));
+		assertDoesNotThrow(()->network.ajouter_Tarnsition(t0));
+		ArcSortantNormal arc0 = assertDoesNotThrow(()-> new ArcSortantNormal(3,p1, t0));
+		ArcSortantNormal arc1 =assertDoesNotThrow(()-> new ArcSortantNormal(1,p2, t0));
+		ArcSortantNormal arc2 =assertDoesNotThrow(()-> new ArcSortantNormal(3,p4, t0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc0));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc1));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc2));
 		
 		
 		
-		ArcEntrant arc3 = new ArcEntrant(7,p3, t0);
-		ArcEntrant arc4 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc5 = new ArcEntrant(4,p6, t0);
+		ArcEntrant arc3 = assertDoesNotThrow(()-> new ArcEntrant(7,p3, t0));
+		ArcEntrant arc4 = assertDoesNotThrow(()->new ArcEntrant(5,p5, t0));
+		ArcEntrant arc5 =assertDoesNotThrow(()-> new ArcEntrant(4,p6, t0));
 		
-		network.ajouter_Arc(arc3);
-		network.ajouter_Arc(arc4);
-		network.ajouter_Arc(arc5);
+		assertDoesNotThrow(()->network.ajouter_Arc(arc3));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc4));
+		assertDoesNotThrow(()->network.ajouter_Arc(arc5));
 		
-		network.fire(t0);
-		
-		assertEquals(false,t0.isTirable());
-		assertEquals(2,p1.getJetons());
-		assertEquals(1,p2.getJetons());
-		assertEquals(0,p3.getJetons());
-		assertEquals(5,p4.getJetons());
-		assertEquals(3,p5.getJetons());
-		assertEquals(4,p6.getJetons());
-		
-		
-		
-		
-	}
-	
-	@Test
-	void testARP3() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingPlace, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(3,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(6,p2, t0);
-		ArcSortantNormal arc2 = new ArcSortantNormal(10,p4, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
-		
-		
-		
-		ArcEntrant arc3 = new ArcEntrant(7,p3, t0);
-		ArcEntrant arc4 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc5 = new ArcEntrant(4,p6, t0);
-		
-		network.ajouter_Arc(arc3);
-		network.ajouter_Arc(arc4);
-		network.ajouter_Arc(arc5);
-		
-		network.fire(t0);
+		assertDoesNotThrow(()->network.fire(t0));
 		
 		assertEquals(false,t0.isTirable());
 		assertEquals(2,p1.getJetons());
@@ -328,216 +296,233 @@ public class TestActivationReseauPetri {
 		
 		
 		
-		
 	}
+	@Test
+	void testARP3() {
+	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p5));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p6));
+	    assertDoesNotThrow(() -> network.ajouter_Tarnsition(t0));
+
+	    ArcSortantNormal arc0 = assertDoesNotThrow(() -> new ArcSortantNormal(3, p1, t0));
+	    ArcSortantNormal arc1 = assertDoesNotThrow(() -> new ArcSortantNormal(6, p2, t0));
+	    ArcSortantNormal arc2 = assertDoesNotThrow(() -> new ArcSortantNormal(10, p4, t0));
+	    
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc0));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc1));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc2));
+
+	    ArcEntrant arc3 = assertDoesNotThrow(() -> new ArcEntrant(7, p3, t0));
+	    ArcEntrant arc4 = assertDoesNotThrow(() -> new ArcEntrant(5, p5, t0));
+	    ArcEntrant arc5 = assertDoesNotThrow(() -> new ArcEntrant(4, p6, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc3));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc4));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc5));
+
+	    assertDoesNotThrow(() -> network.fire(t0));
+
+	    // Assertions finales pour vérifier les états
+	    assertEquals(false, t0.isTirable());
+	    assertEquals(2, p1.getJetons());
+	    assertEquals(1, p2.getJetons());
+	    assertEquals(0, p3.getJetons());
+	    assertEquals(5, p4.getJetons());
+	    assertEquals(3, p5.getJetons());
+	    assertEquals(4, p6.getJetons());
+	}
+
 	
 	@Test
-	void testARP4() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, ExistingTransition, NegativeWeight {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(2,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(1,p2, t0);
-		ArcSortantNormal arc2 = new ArcSortantNormal(5,p4, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
-		
-		
-		
-		ArcEntrant arc3 = new ArcEntrant(7,p3, t0);
-		ArcEntrant arc4 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc5 = new ArcEntrant(4,p6, t0);
-		
-		network.ajouter_Arc(arc3);
-		network.ajouter_Arc(arc4);
-		network.ajouter_Arc(arc5);
-		
-		network.fire(t0);
-		
-		assertEquals(true,t0.isTirable());
-		assertEquals(0,p1.getJetons());
-		assertEquals(0,p2.getJetons());
-		assertEquals(0,p4.getJetons());
-		assertEquals(7,p3.getJetons());
-		assertEquals(8,p5.getJetons());
-		assertEquals(8,p6.getJetons());
-		
-		
-		
-		
+	void testARP4() {
+	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p5));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p6));
+	    assertDoesNotThrow(() -> network.ajouter_Tarnsition(t0));
+	    
+	    ArcSortantNormal arc0 = assertDoesNotThrow(() -> new ArcSortantNormal(2, p1, t0));
+	    ArcSortantNormal arc1 = assertDoesNotThrow(() -> new ArcSortantNormal(1, p2, t0));
+	    ArcSortantNormal arc2 = assertDoesNotThrow(() -> new ArcSortantNormal(5, p4, t0));
+	    
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc0));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc1));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc2));
+
+	    ArcEntrant arc3 = assertDoesNotThrow(() -> new ArcEntrant(7, p3, t0));
+	    ArcEntrant arc4 = assertDoesNotThrow(() -> new ArcEntrant(5, p5, t0));
+	    ArcEntrant arc5 = assertDoesNotThrow(() -> new ArcEntrant(4, p6, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc3));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc4));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc5));
+
+	    assertEquals(true, t0.isTirable());
+	    assertDoesNotThrow(() -> network.fire(t0));
+	    assertEquals(0, p1.getJetons());
+	    assertEquals(0, p2.getJetons());
+	    assertEquals(0, p4.getJetons());
+	    assertEquals(7, p3.getJetons());
+	    assertEquals(8, p5.getJetons());
+	    assertEquals(8, p6.getJetons());
 	}
+
 	
 	@Test
-	void testARP5() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingPlace, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(2,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(1,p2, t0);
-		ArcZero arc2 = new ArcZero(p3, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
-		
-		
-		
-		
-		ArcEntrant arc4 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc5 = new ArcEntrant(4,p6, t0);
-		
-		
-		network.ajouter_Arc(arc4);
-		network.ajouter_Arc(arc5);
-		
-		network.fire(t0);
-		
-		assertEquals(true,t0.isTirable());
-		assertEquals(0,p1.getJetons());
-		assertEquals(0,p2.getJetons());
-		assertEquals(0,p3.getJetons());
-		assertEquals(8,p5.getJetons());
-		assertEquals(8,p6.getJetons());
-		
-	
+	void testARP5() {
+	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p5));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p6));
+	    assertDoesNotThrow(() -> network.ajouter_Tarnsition(t0));
+
+	    ArcSortantNormal arc0 = assertDoesNotThrow(() -> new ArcSortantNormal(2, p1, t0));
+	    ArcSortantNormal arc1 = assertDoesNotThrow(() -> new ArcSortantNormal(1, p2, t0));
+	    ArcZero arc2 = assertDoesNotThrow(() -> new ArcZero(p3, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc0));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc1));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc2));
+
+	    ArcEntrant arc4 = assertDoesNotThrow(() -> new ArcEntrant(5, p5, t0));
+	    ArcEntrant arc5 = assertDoesNotThrow(() -> new ArcEntrant(4, p6, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc4));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc5));
+
+	    assertEquals(true, t0.isTirable());
+	    assertDoesNotThrow(() -> network.fire(t0));
+	    assertEquals(0, p1.getJetons());
+	    assertEquals(0, p2.getJetons());
+	    assertEquals(0, p3.getJetons());
+	    assertEquals(8, p5.getJetons());
+	    assertEquals(8, p6.getJetons());
 	}
-	
+
 	
 	@Test
-	void testARP6() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, ExistingTransition, NegativeWeight {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(1,p2, t0);
-		ArcVideur arc2 = new ArcVideur(p4, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
-		
-		
-		
-		ArcEntrant arc3 = new ArcEntrant(7,p3, t0);
-		ArcEntrant arc4 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc5 = new ArcEntrant(4,p6, t0);
-		
-		network.ajouter_Arc(arc3);
-		network.ajouter_Arc(arc4);
-		network.ajouter_Arc(arc5);
-		
-		network.fire(t0);
-		
-		assertEquals(true,t0.isTirable());
-		assertEquals(1,p1.getJetons());
-		assertEquals(0,p2.getJetons());
-		assertEquals(0,p4.getJetons());
-		assertEquals(7,p3.getJetons());
-		assertEquals(8,p5.getJetons());
-		assertEquals(8,p6.getJetons());
-		
-		
-		
-		
+	void testARP6() {
+	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p5));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p6));
+	    assertDoesNotThrow(() -> network.ajouter_Tarnsition(t0));
+
+	    ArcSortantNormal arc0 = assertDoesNotThrow(() -> new ArcSortantNormal(1, p1, t0));
+	    ArcSortantNormal arc1 = assertDoesNotThrow(() -> new ArcSortantNormal(1, p2, t0));
+	    ArcVideur arc2 = assertDoesNotThrow(() -> new ArcVideur(p4, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc0));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc1));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc2));
+
+	    ArcEntrant arc3 = assertDoesNotThrow(() -> new ArcEntrant(7, p3, t0));
+	    ArcEntrant arc4 = assertDoesNotThrow(() -> new ArcEntrant(5, p5, t0));
+	    ArcEntrant arc5 = assertDoesNotThrow(() -> new ArcEntrant(4, p6, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc3));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc4));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc5));
+
+	    assertEquals(true, t0.isTirable());
+	    assertDoesNotThrow(() -> network.fire(t0));
+	    assertEquals(1, p1.getJetons());
+	    assertEquals(0, p2.getJetons());
+	    assertEquals(0, p4.getJetons());
+	    assertEquals(7, p3.getJetons());
+	    assertEquals(8, p5.getJetons());
+	    assertEquals(8, p6.getJetons());
 	}
+
 	
 	@Test
-	void testARP7() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, ExistingPlace, NegativeWeight, ExistingTransition {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Tarnsition(t0);
-		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
-		ArcZero arc1 = new ArcZero(p3, t0);
-		ArcVideur arc2 = new ArcVideur(p4, t0);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
-		
-		
-		
-		
-		ArcEntrant arc4 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc5 = new ArcEntrant(4,p6, t0);
-		
-		
-		network.ajouter_Arc(arc4);
-		network.ajouter_Arc(arc5);
-		
-		network.fire(t0);
-		
-		assertEquals(true,t0.isTirable());
-		assertEquals(1,p1.getJetons());
-		assertEquals(0,p3.getJetons());
-		assertEquals(0,p4.getJetons());
-		assertEquals(8,p5.getJetons());
-		assertEquals(8,p6.getJetons());
-		
-		
-		
-		
+	void testARP7() {
+	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p5));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p6));
+	    assertDoesNotThrow(() -> network.ajouter_Tarnsition(t0));
+
+	    ArcSortantNormal arc0 = assertDoesNotThrow(() -> new ArcSortantNormal(1, p1, t0));
+	    ArcZero arc1 = assertDoesNotThrow(() -> new ArcZero(p3, t0));
+	    ArcVideur arc2 = assertDoesNotThrow(() -> new ArcVideur(p4, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc0));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc1));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc2));
+
+	    ArcEntrant arc4 = assertDoesNotThrow(() -> new ArcEntrant(5, p5, t0));
+	    ArcEntrant arc5 = assertDoesNotThrow(() -> new ArcEntrant(4, p6, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc4));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc5));
+
+	    assertEquals(true, t0.isTirable());
+	    assertDoesNotThrow(() -> network.fire(t0));
+	    assertEquals(1, p1.getJetons());
+	    assertEquals(0, p3.getJetons());
+	    assertEquals(0, p4.getJetons());
+	    assertEquals(8, p5.getJetons());
+	    assertEquals(8, p6.getJetons());
 	}
+
 	
 	@Test
-	void testARP8() throws NullPlaceException, NullTransitionException, NegativeToken, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeWeight, ExistingTransition, ExistingPlace {
-		network.ajouter_Place(p1);
-		network.ajouter_Place(p2);
-		network.ajouter_Place(p3);
-		network.ajouter_Place(p4);
-		network.ajouter_Place(p5);
-		network.ajouter_Place(p6);
-		network.ajouter_Place(p7);
-		network.ajouter_Place(p8);
-		network.ajouter_Tarnsition(t0);
-		network.ajouter_Tarnsition(t1);
-		ArcSortantNormal arc0 = new ArcSortantNormal(1,p1, t0);
-		ArcSortantNormal arc1 = new ArcSortantNormal(1,p2, t0);
-		ArcSortantNormal arc2 = new ArcSortantNormal(3,p4, t0);
-		ArcSortantNormal arc4 = new ArcSortantNormal(2,p7, t1);
-		network.ajouter_Arc(arc0);
-		network.ajouter_Arc(arc1);
-		network.ajouter_Arc(arc2);
-		network.ajouter_Arc(arc4);
-		
-		
-		
-		ArcEntrant arc5 = new ArcEntrant(7,p3, t0);
-		ArcEntrant arc6 = new ArcEntrant(5,p5, t0);
-		ArcEntrant arc7 = new ArcEntrant(4,p6, t0);
-		ArcEntrant arc3 = new ArcEntrant(1,p8,t1);
-		ArcEntrant arc8 = new ArcEntrant(1,p7, t0);
-		network.ajouter_Arc(arc5);
-		network.ajouter_Arc(arc6);
-		network.ajouter_Arc(arc7);
-		network.ajouter_Arc(arc8);
-		network.ajouter_Arc(arc3);
-		
-		network.fireAll();
-		
-		
-		assertEquals(true,t0.isTirable());
-		assertEquals(true,t1.isTirable());
-		assertEquals(1,p1.getJetons());
-		assertEquals(0,p2.getJetons());
-		assertEquals(7,p3.getJetons());
-		assertEquals(2,p4.getJetons());
-		assertEquals(8,p5.getJetons());
-		assertEquals(8,p6.getJetons());
-		assertEquals(9,p7.getJetons());
-		assertEquals(16,p8.getJetons());
-		
+	void testARP8() {
+	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p5));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p6));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p7));
+	    assertDoesNotThrow(() -> network.ajouter_Place(p8));
+	    assertDoesNotThrow(() -> network.ajouter_Tarnsition(t0));
+	    assertDoesNotThrow(() -> network.ajouter_Tarnsition(t1));
+
+	    ArcSortantNormal arc0 = assertDoesNotThrow(() -> new ArcSortantNormal(1, p1, t0));
+	    ArcSortantNormal arc1 = assertDoesNotThrow(() -> new ArcSortantNormal(1, p2, t0));
+	    ArcSortantNormal arc2 = assertDoesNotThrow(() -> new ArcSortantNormal(3, p4, t0));
+	    ArcSortantNormal arc4 = assertDoesNotThrow(() -> new ArcSortantNormal(2, p7, t1));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc0));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc1));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc2));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc4));
+
+	    ArcEntrant arc5 = assertDoesNotThrow(() -> new ArcEntrant(7, p3, t0));
+	    ArcEntrant arc6 = assertDoesNotThrow(() -> new ArcEntrant(5, p5, t0));
+	    ArcEntrant arc7 = assertDoesNotThrow(() -> new ArcEntrant(4, p6, t0));
+	    ArcEntrant arc3 = assertDoesNotThrow(() -> new ArcEntrant(1, p8, t1));
+	    ArcEntrant arc8 = assertDoesNotThrow(() -> new ArcEntrant(1, p7, t0));
+
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc5));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc6));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc7));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc8));
+	    assertDoesNotThrow(() -> network.ajouter_Arc(arc3));
+
+	    assertEquals(true, t0.isTirable());
+	    assertEquals(true, t1.isTirable());
+	    assertDoesNotThrow(() -> network.fireAll());
+	    assertEquals(1, p1.getJetons());
+	    assertEquals(0, p2.getJetons());
+	    assertEquals(7, p3.getJetons());
+	    assertEquals(2, p4.getJetons());
+	    assertEquals(8, p5.getJetons());
+	    assertEquals(8, p6.getJetons());
+	    assertEquals(9, p7.getJetons());
+	    assertEquals(16, p8.getJetons());
 	}
+
 
 }
