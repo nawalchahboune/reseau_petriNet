@@ -29,8 +29,14 @@ public class ArcSortantNormal extends ArcSortant {
 	}
 
 	
-	public void setPoids(int poids) {
-		this.poids = poids;
+	public void setPoids(int poids) throws NegativeWeight {
+		if(poids<0) {
+			throw new NegativeWeight();
+		}
+		else {
+
+			this.poids = poids;
+		}
 	}
 	public int getPoids() {
 		return this.poids;

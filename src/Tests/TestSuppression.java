@@ -15,7 +15,7 @@ class TestSuppression {
 	
 
 	@Test
-	void testSupressionPlaceEtTransition() {
+	void SPT0() {
 		   Reseau_Petri  network = new Reseau_Petri();
 		   Place p1 =assertDoesNotThrow(()-> new Place(2));
 		   Place p2 =assertDoesNotThrow(()-> new Place(2));
@@ -39,8 +39,8 @@ class TestSuppression {
 		   
 	}
 	@Test 
-	void testSupressionArc() {
-		 Reseau_Petri  network = new Reseau_Petri();
+	void SPT1() {
+		   Reseau_Petri  network = new Reseau_Petri();
 		   Place p1 =assertDoesNotThrow(()-> new Place(2));
 		   Place p2 =assertDoesNotThrow(()-> new Place(2));
 		   Place p3 =assertDoesNotThrow(()-> new Place(2));

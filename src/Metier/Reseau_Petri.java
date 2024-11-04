@@ -7,6 +7,7 @@ import Exceptions.ExistingArc;
 import Exceptions.ExistingPlace;
 import Exceptions.ExistingTransition;
 import Exceptions.NegativeToken;
+import Exceptions.NegativeWeight;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
 import Exceptions.NullTransitionException;
@@ -340,7 +341,7 @@ public ArrayList<Arc> getArcs(){
 	}
 
 	@Override
-	public void chnagerPoids(Arc arc, int poids ) throws NullTArcException  {
+	public void chnagerPoids(Arc arc, int poids ) throws NullTArcException, NegativeWeight  {
 		
 		if(arc!= null) {
 			if(arc instanceof ArcEntrant  ) {
