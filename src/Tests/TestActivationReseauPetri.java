@@ -52,6 +52,7 @@ public class TestActivationReseauPetri {
 	
 	@BeforeEach
 	void setup() throws NegativeToken, NullPlaceException, NullTransitionException {
+		
 		//Reseau de Petri
 		network =  assertDoesNotThrow(()-> new Reseau_Petri());
 		//Transition
@@ -83,6 +84,7 @@ public class TestActivationReseauPetri {
 	*/
 	@Test
 	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
+	    
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
 		ArcSortantNormal arc0 = new ArcSortantNormal(1,p3, t0);
@@ -94,6 +96,9 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testRS2() {
+		/*
+		 * 
+		 * */
 		assertDoesNotThrow(()-> network.ajouter_Place(p1));
 		assertDoesNotThrow(()-> network.ajouter_Tarnsition(t0));
 		 ArcSortantNormal arc0 =  assertDoesNotThrow(()->new ArcSortantNormal(1,p1, t0));
@@ -178,6 +183,17 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testARP0() {
+		/*Activation avec jetons 
+			suffisants sur tous les arcs et 
+			un seul arc sortant de la 
+			transition 
+			
+			
+			La transition est activée, les jetons dans les places 
+			entrantes sont réduits, et augmentés dans la place 
+			sortante 
+		 * 
+		 * */
 		assertDoesNotThrow(()-> network.ajouter_Place(p1));
 		assertDoesNotThrow(()-> network.ajouter_Place(p2));
 		assertDoesNotThrow(()-> network.ajouter_Place(p4));
@@ -215,7 +231,16 @@ public class TestActivationReseauPetri {
 	@Test
 	void testARP1() {
 		
+		/* Activation avec jetons 
+		suffisants sur tous les arcs et 
+		plusieurs arc sortant de la 
+		transition 
 		
+		*La transition est activée, les jetons dans les places 
+			entrantes sont réduits, et augmentés dans les places 
+			sortantes 
+		*
+		*/
 		
 		assertDoesNotThrow(()->network.ajouter_Place(p1));
 		assertDoesNotThrow(()->network.ajouter_Place(p2));
@@ -259,6 +284,14 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testARP2() {
+		/*Activation avec jetons 
+          insuffisants sur un arc 
+          
+          
+          La transition ne s'active pas, les jetons restent 
+          inchangés 
+		 * 
+		 * */
 		assertDoesNotThrow(()->network.ajouter_Place(p1));
 		assertDoesNotThrow(()->network.ajouter_Place(p2));
 		assertDoesNotThrow(()->network.ajouter_Place(p4));
@@ -299,6 +332,13 @@ public class TestActivationReseauPetri {
 	}
 	@Test
 	void testARP3() {
+		/*Activation avec jetons 
+           insuffisants sur plusieurs arcs 
+           
+           La transition ne s'active pas, les jetons restent 
+           inchangés 
+		 * 
+		 * */
 	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
@@ -338,6 +378,14 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testARP4() {
+		/*Places avec un nombre exact 
+          de jetons requis par les 
+          différents poids des arcs 
+          
+          La transition s'active, les jetons sont ajustés en 
+          fonction des poids de chaque arc 
+		 * 
+		 * */
 	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
@@ -375,6 +423,15 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testARP5() {
+		/*Arcs avec une place ayant 0 
+           jeton et un arc Zéro 
+           
+           
+           La transition est activée, les jetons dans les places 
+           entrantes sont réduits, et augmentés dans les places 
+           sortantes 
+           
+		 * */
 	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
@@ -408,6 +465,15 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testARP6() {
+		/*Activation avec jetons 
+          suffisants sur tous les arcs et 
+          un arc videur
+          
+          La transition est activée, les jetons dans les places 
+          entrantes sont réduits, et augmentés dans les places 
+          sortantes 
+           
+		 * */
 	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
@@ -445,6 +511,15 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testARP7() {
+		/*
+		 * Activation avec jetons non 
+			nuls suffisants sur tous les arcs 
+			et un arc videur et un arc zéro 
+			
+			
+		 * La transition ne s'active pas, les jetons restent 
+           inchangés 
+		 * */
 	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p4));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
@@ -478,6 +553,16 @@ public class TestActivationReseauPetri {
 	
 	@Test
 	void testARP8() {
+		/*Activation du réseau avec 
+			deux transitions et plusieurs 
+			places et plusieurs arcs chaque 
+			place ayant un nombre de 
+			jetons supérieurs ou égal au 
+			nombre d’arc
+			
+			Les transitions s’activent, les jetons sont changés
+		 * 
+		 * */
 	    assertDoesNotThrow(() -> network.ajouter_Place(p1));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p2));
 	    assertDoesNotThrow(() -> network.ajouter_Place(p3));
