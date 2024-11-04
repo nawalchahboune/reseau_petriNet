@@ -320,16 +320,21 @@ class TestsCreation {
 		@Test 
 		void TestExistingTransition() {
 			Transition t = new Transition();
+			Transition t2 = new Transition() ;
 			Reseau_Petri network= new Reseau_Petri();
 			assertDoesNotThrow(()->{
 				network.ajouter_Tarnsition(t);
 			});
+			assertDoesNotThrow(()->{
+				network.ajouter_Tarnsition(t2);
+			});
 
-			assertEquals(1, network.getTransitions().size());
+			assertEquals(2, network.getTransitions().size());
 			
 			Exception exception = assertThrows(ExistingTransition.class, () -> {
 		        network.ajouter_Tarnsition(t);
 		    });
+			assertEquals(2,network.getTransitions().size() );
 			assertEquals("transition deja existe!", exception.getMessage());
 		}
 		

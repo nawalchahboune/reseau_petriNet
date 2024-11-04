@@ -102,6 +102,7 @@ public class Place {
 		+ Szero + " arc(s) sortant(s) zero ///" 
 		+ this.getArcsEntrants().size() +" arc(s) entrant(s)  ";
 	}
+	/*
 	@Override
 	public boolean equals(Object obj) {
 	    if (this == obj) return true; 
@@ -110,9 +111,9 @@ public class Place {
 	    Place other = (Place) obj;
 
 	    return this.jetons == other.getJetons() &&
-	           (this.getArcsEntrants() != null && this.getArcsEntrants().equals(other.getArcsEntrants())) &&
-	           (this.getArcsSortants() != null && this.getArcsSortants().equals(other.getArcsSortants()));
+	           ( this.getArcsEntrants().equals(other.getArcsEntrants())) &&
+	           ( this.getArcsSortants().equals(other.getArcsSortants()));
 
-	}
+	}*/
 
 }
