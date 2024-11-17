@@ -14,12 +14,7 @@ public class ArcSortantNormal extends ArcSortant {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
 		this.poids=poids;
-		if(place==null) {
-			throw new NullPlaceException();
-		}
-		if(transition==null) {
-			throw new NullTransitionException();
-		}
+		
 		if(poids<0) {
 			throw new NegativeWeight();
 		}
@@ -60,21 +55,7 @@ public class ArcSortantNormal extends ArcSortant {
 		}
 		return false;
 	}
-	@Override
-	public void add_arc_to_transition()  {
-		try {
-			this.getTransition().add_to_arc_entrant(this);
-		} catch (ExistingArc e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
-		
-	}
-	@Override
-	public void remove_arc_from_transition() {
-		this.getTransition().remove_from_arc_entrant(this);
-		
-	}
+
 
 	public String toString() {
 		//arc simple poids 1 (place avec 4 jetons vers transition)

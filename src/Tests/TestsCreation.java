@@ -323,5 +323,45 @@ class TestsCreation {
 		assertEquals(2, network.getTransitions().size());
 		assertEquals("transition deja existe!", exception.getMessage());
 	}
+	@Test 
+	void creationArcVideur() {
+		Transition t = new Transition();
+		Place p=assertDoesNotThrow(()->  new Place(2));
+		Exception e =assertThrows(NullPlaceException.class, () -> {
+			new ArcVideur(null, t);}); 
+			assertEquals("place est null !!! ", e.getMessage());
+			Exception e2 =assertThrows(NullTransitionException.class, () -> {
+				new ArcVideur(p, null);}); 
+				assertEquals("transition null !!", e2.getMessage());
+				Place p2 = assertDoesNotThrow(() -> 
+					new Place(0));
+				Transition t2 = new Transition();
+				ArcVideur aV= assertDoesNotThrow(()->
+					new ArcVideur(p2, t2)
+				);
+				assertEquals(false, aV.arcIsFireable());
+
+				Transition t3 = new Transition();
+				Place p3 =assertDoesNotThrow(()-> new Place(2));
+			ArcVideur arcVi= assertDoesNotThrow(()-> new ArcVideur(p3, t3));
+			assertEquals(true,arcVi.arcIsFireable() );
+			assertDoesNotThrow(()->arcVi.update_jeton_place());
+			assertEquals(0, p3.getJetons());
+			assertEquals(1,t3.getArcsEntrants().size());
+			Exception e4 =assertThrows(ExistingArc.class, () -> {new ArcVideur(p3, t3);}); 
+				assertEquals("arc already exists", e4.getMessage());
+				
+				Transition t4 = new Transition();
+				Place p4 =assertDoesNotThrow(()-> new Place(2));
+			ArcVideur arcVi2 = assertDoesNotThrow(()->new ArcVideur(p4, t4));
+			assertEquals(true, arcVi2.equals(arcVi2));
+			assertEquals(false,arcVi.equals(arcVi2));
+			assertEquals(false, arcVi.equals(t3));
+			assertEquals(false,arcVi.equals(aV));
+			
+		
+			
+		
+	}
 
 }

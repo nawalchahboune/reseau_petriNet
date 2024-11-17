@@ -71,11 +71,11 @@ public class Place {
 		
 	}
 	public void remove_from_arc_Sortant(ArcSortant arcSortant) {
-		this.arcsSortants.add(arcSortant);
+		this.arcsSortants.remove(arcSortant);
 		
 	}
 	public void remove_from_arc_entrant( ArcEntrant arcEntrant) {
-		this.arcsEntrants.add(arcEntrant);
+		this.arcsEntrants.remove(arcEntrant);
 		
 	}
 	@Override

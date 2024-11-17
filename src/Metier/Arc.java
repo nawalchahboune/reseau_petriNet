@@ -1,5 +1,7 @@
 package Metier;
 
+import Exceptions.ExistingArc;
+
 public abstract class Arc {
 	private Place place;
 	private Transition transition;
@@ -24,7 +26,6 @@ public abstract class Arc {
 	public void setTransition(Transition transition) {
 		this.transition = transition;
 	}
-	public abstract  void add_arc_to_transition();
-	public abstract void remove_arc_from_transition();
-
+	// supression des deux methodes d'jout de l'arc ou de sa supression au niveau de 
+	// la transition ou la place associé; parceque ces qeux methodes sont deja implementées dans transition et place
 }

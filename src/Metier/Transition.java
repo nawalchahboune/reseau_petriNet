@@ -5,19 +5,17 @@ import java.util.ArrayList;
 import Exceptions.ExistingArc;
 
 public class Transition {
-	private static int nb;
-	private String name;
 	private boolean tirable;
 	private ArrayList<ArcSortant> arcsEntrants;
 	private ArrayList<ArcEntrant> arcsSortants;
 	
 	public Transition() {
 
-		this.name = "Transition_" +Integer.toString(nb);
+		
 		this.tirable = false;
 		this.arcsEntrants = new ArrayList<ArcSortant>();
 		this.arcsSortants = new ArrayList<ArcEntrant>();
-		nb++;
+		
 	}
 	
 	/* blic Transition( ArrayList<ArcSortant> arcsSortants, ArrayList<ArcEntrant> arcsEntrants) {
@@ -31,13 +29,6 @@ public class Transition {
 	}
 	*/
 	
-	public String getName() {
-		return this.name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	
 	public void setTirable(boolean tirable) {
@@ -45,16 +36,7 @@ public class Transition {
 		
 		this.tirable=tirable;
 	}
-	public void setTirable() {
-		this.setTirable(true);
-		for (ArcSortant arcEntrant : arcsEntrants) {
-			if(!(arcEntrant.arcIsFireable())) {
-				this.setTirable(false);
-				break;
-			}
-			
-		}
-	}
+
 	public boolean isTirable() {
 		tirable =true;
 		for (ArcSortant arcEntrant : arcsEntrants) {
@@ -84,7 +66,7 @@ public class Transition {
 		
 	}
 	public void add_to_arc_entrant(ArcSortant arc) throws ExistingArc {
-		if(this.arcsSortants.contains(arc)) {
+		if(this.arcsEntrants.contains(arc)) {
 			throw new ExistingArc();
 		}
 		else {
@@ -93,11 +75,11 @@ public class Transition {
 		
 	}
 	public void remove_from_arc_Sortant(ArcEntrant arcSortant) {
-		this.arcsSortants.add(arcSortant);
+		this.arcsSortants.remove(arcSortant);
 		
 	}
 	public void remove_from_arc_entrant(ArcSortant arcEntrant) {
-		this.arcsEntrants.add(arcEntrant);
+		this.arcsEntrants.remove(arcEntrant);
 	}
 	@Override
 	public String toString() {
@@ -134,6 +116,21 @@ public class Transition {
 
 	    return s;
 	}
+	/*
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true; // Vérification de référence
+	    if (obj == null || getClass() != obj.getClass()) return false; // Vérification du type
 
+	    Transition other = (Transition) obj;
+
+	    // Comparaison des attributs poids, place et transition
+	    return  
+	           (this.getArcsSortants() != null && this.getArcsSortants().size()==other.getArcsSortants().size()) &&
+	           (this.getArcsEntrants() != null && this.getArcsEntrants().size()==other.getArcsEntrants().size());
+
+		
+	}
+*/
 
 }

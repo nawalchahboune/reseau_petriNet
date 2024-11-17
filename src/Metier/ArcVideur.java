@@ -10,46 +10,36 @@ public class ArcVideur extends ArcSortant{
 	public ArcVideur(Place place, Transition transition)  throws NullPlaceException , NullTransitionException, ExistingArc{
 		// TODO Auto-generated constructor stub
 		super(place, transition);
-		if(place==null) {
+		/*
+		 * 
+		 * if(place==null) {
 			throw new NullPlaceException();
 		}
 		if(transition==null) {
 			throw new NullTransitionException();
 		}
+		 */
 		transition.add_to_arc_entrant(this);
 		place.add_to_arc_sortant(this);
 	}
 	@Override
 	public void update_jeton_place() throws NegativeToken {
-		if(true) {
+		if(active) {
 
 			this.getPlace().setJetons(0);
 		}
-		else {
-			throw new NegativeToken();
-		}
-		
 	}
 	@Override
 	public boolean arcIsFireable() {
-		if (this.getPlace().getJetons() >=1) {return true;}
-		return false;
-	}
-	@Override
-	public void add_arc_to_transition() {
-		try {
-			this.getTransition().add_to_arc_entrant(this);
-		} catch (ExistingArc e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
+		if (this.getPlace().getJetons() >=1) {
+			this.active=true;
+			return true;}
+		else {
+			this.active=false;
+			return false;
 		}
-		
 	}
-	@Override
-	public void remove_arc_from_transition() {
-		this.getTransition().remove_from_arc_entrant(this);
-		
-	}
+
 	
 	@Override
 	public boolean equals(Object obj) {

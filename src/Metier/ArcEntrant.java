@@ -52,21 +52,7 @@ public class ArcEntrant extends Arc {
 		
 	}
 
-	@Override
-	public void add_arc_to_transition() {
-		try {
-			this.getTransition().add_to_arc_sortant(this);
-		}catch(ExistingArc e) {
-			e.getMessage();
-		}
-		
-	}
-
-	@Override
-	public void remove_arc_from_transition() {
-		// TODO Auto-generated method stub
-		this.getTransition().remove_from_arc_Sortant(this);
-	}
+	
 	@Override
 	public String toString() {
 		return "arc simple poids "+ this.getPoids() +

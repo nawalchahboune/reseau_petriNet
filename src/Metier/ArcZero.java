@@ -10,12 +10,7 @@ public class ArcZero extends ArcSortant {
 		// TODO Auto-generated constructor stub
 		super(place, transition);
 		this.active =false;
-		if(place==null) {
-			throw new NullPlaceException();
-		}
-		if(transition==null) {
-			throw new NullTransitionException();
-		}
+		
 		transition.add_to_arc_entrant(this);
 		place.add_to_arc_sortant(this);
 	}
@@ -27,7 +22,10 @@ public class ArcZero extends ArcSortant {
 	}
 	@Override
 	public boolean arcIsFireable() {
-		if (this.getPlace().getJetons() == 0) {return true;}
+		if (this.getPlace().getJetons() == 0) {
+			this.setActive(true);
+			return true;}
+		this.setActive(false);
 		return false;
 	}
 	
@@ -36,22 +34,9 @@ public class ArcZero extends ArcSortant {
 	}
 	
 	public boolean isActive() {
-		return false;
+		return active;
 	}
-	@Override
-	public void add_arc_to_transition() {
-		try {
-			this.getTransition().add_to_arc_entrant(this);
-		} catch (ExistingArc e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}
-	}
-	@Override
-	public void remove_arc_from_transition() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	@Override
 	public boolean equals(Object obj) {

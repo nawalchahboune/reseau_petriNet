@@ -27,22 +27,7 @@ public class Reseau_Petri implements IReseauPetri {
 
 
 
-	public void setArcs(ArrayList<Arc> arcs) {
-		this.arcs = arcs;
-	}
-
-
-
-	public void setPlaces(ArrayList<Place> places) {
-		this.places = places;
-	}
-
-
-
-
-	public void setTransitions(ArrayList<Transition> transitions) {
-		this.transitions = transitions;
-	}
+	/*
 
 
 	public Reseau_Petri(ArrayList<Arc> arcs, ArrayList<Place> places, ArrayList<Transition> transitions) {
@@ -85,6 +70,7 @@ public class Reseau_Petri implements IReseauPetri {
 		        
 		 }
 	}
+	*/
 public ArrayList<Arc> getArcs(){
 		return this.arcs;
 	}
@@ -101,16 +87,11 @@ public ArrayList<Arc> getArcs(){
 
 	@Override
 
-	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException{
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc, ExistingPlace, ExistingTransition{
 		
 		if(arc!=null) {
-			if(!this.places.contains(arc.getPlace())) {
-				throw new UnknownPlaceException();
-			}
-			else if (!this.transitions.contains(arc.getTransition())) {
-				throw new UnknownTransitionException();
-			}
-			else if(this.arcs.contains(arc)) {
+			
+			 if(this.arcs.contains(arc)) {
 				throw new ExistingArc();
 			}
 			/*
@@ -276,11 +257,10 @@ public ArrayList<Arc> getArcs(){
 //while (transitionTirables.size()>0) {
 	@Override
 	public String toString() {
-		System.out.println("xh?");
-		String s="****************************"+"\n";
+		String s="";
 		for (Transition transition : transitions) {
 			System.out.println(transitions.size());
-			System.out.println("hh ? "+ transition.toString() );
+			System.out.println(transition.toString() );
 			s+=transition.toString() +"\n";
 			ArrayList<ArcSortant> arcE= transition.getArcsEntrants();
 			ArrayList<ArcEntrant> arcS= transition.getArcsSortants();
@@ -316,7 +296,7 @@ public ArrayList<Arc> getArcs(){
 		//on doit s'assurer que le reseau le contient bien  : place !!
 		// ainsi que pour transi
 		if(place!=null) {
-			place.setJetons(jetons);
+			place.setJetons(jetons+place.getJetons());
 
 		}
 		else {
