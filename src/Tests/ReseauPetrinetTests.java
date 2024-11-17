@@ -79,7 +79,7 @@ class ReseauPetrinetTests {
 		assertEquals("place est null !!! ", e.getMessage());
 		
 		Exception e2 = assertThrows(NullTArcException.class, ()->{
-			network.chnagerPoids(null, 0);
+			network.changerPoids(null, 0);
 		});
 		assertEquals("arc null !!! ", e2.getMessage());
 		assertEquals(4, p3.getJetons());
@@ -87,7 +87,7 @@ class ReseauPetrinetTests {
 		assertEquals(6, p3.getJetons());
 		assertDoesNotThrow(()->network.enleverJetons(p3, 3));
 		assertEquals(3, p3.getJetons());
-		assertDoesNotThrow(()->network.chnagerPoids(arcp1t1, 4));
+		assertDoesNotThrow(()->network.changerPoids(arcp1t1, 4));
 		assertEquals(4, arcp1t1.getPoids());
 		Exception e3 = assertThrows(ExistingArc.class, ()->{
 			network.ajouter_Arc(arct1p3);

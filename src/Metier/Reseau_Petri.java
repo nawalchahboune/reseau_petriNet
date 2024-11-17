@@ -14,10 +14,20 @@ import Exceptions.NullTransitionException;
 import Exceptions.UnknownPlaceException;
 import Exceptions.UnknownTransitionException;
 
+/**
+ * Représente un réseau de Petri avec des places, des transitions et des arcs.
+ * Permet la gestion des jetons, des arcs et des transitions dans le cadre de l'exécution d'un réseau de Petri.
+ * Permet l'activation du réseau de Petri créé.
+ */
+
 public class Reseau_Petri implements IReseauPetri {
 	private ArrayList<Arc> arcs;
 	private ArrayList<Place> places;
 	private ArrayList<Transition> transitions;
+	
+	/**
+     * Constructeur par défaut. Initialise un réseau de Petri vide.
+     */
 	
 	public Reseau_Petri() {
 		this.arcs = new ArrayList<Arc>();
@@ -25,112 +35,64 @@ public class Reseau_Petri implements IReseauPetri {
 		this.transitions = new ArrayList<Transition>();
 	}
 
-
-
-	/*
-
-
-	public Reseau_Petri(ArrayList<Arc> arcs, ArrayList<Place> places, ArrayList<Transition> transitions) {
-		this.arcs = arcs;
-		this.places = places;
-		this.transitions = transitions;
-		 for (Arc arc : arcs) {
-		        Place place = arc.getPlace();
-		        Transition transition = arc.getTransition();
-		        
-		        if(!places.contains(place)) {
-		        	places.add(place);
-		        }
-		        if(!transitions.contains(transition)) {
-		        	transitions.add(transition);
-		        }
-		        for (Transition t : transitions) {
-		        	 ArrayList<ArcSortant> arcsEDeTransition = t.getArcsEntrants();
-		        	 ArrayList<ArcEntrant> arcsSDeTransition = t.getArcsSortants();
-		        	 for (ArcSortant arcE : arcsEDeTransition) {
-		        		 if(!arcs.contains(arcE)) {
-		        			 arcs.add(arcE);
-		        		 }
-		        		 Place p= arcE.getPlace();
-		        		 if(!places.contains(p)) {
-		        			 places.add(place);
-		        		 }
-					}
-		        	 for (ArcEntrant arcS : arcsSDeTransition) {
-		        		 if(!arcs.contains(arcS)) {
-		        			 arcs.add(arcS);
-		        		 }
-		        		 Place p= arcS.getPlace();
-		        		 if(!places.contains(p)) {
-		        			 places.add(place);
-		        		 }
-					}
-				}
-		       
-		        
-		 }
-	}
-	*/
-public ArrayList<Arc> getArcs(){
+	 /**
+     * Récupère la liste des arcs du réseau.
+     * 
+     * @return La liste des arcs.
+     */
+	public ArrayList<Arc> getArcs(){
 		return this.arcs;
 	}
+	
+	/**
+     * Récupère la liste des places du réseau.
+     * 
+     * @return La liste des places.
+     */
 	
 	public ArrayList<Place> getPlaces(){
 		return this.places;
 	}
 	
+	/**
+     * Récupère la liste des transitions du réseau.
+     * 
+     * @return La liste des transitions.
+     */
 	public ArrayList<Transition> getTransitions(){
 		return this.transitions;
 	}
 	
+    /**
+     * Ajoute un arc au réseau de Petri.
+     * 
+     * @param arc L'arc à ajouter.
+     * @throws NullTArcException Si l'arc est nul.
+     * @throws ExistingArc Si l'arc existe déjà dans le réseau.
+     */
 	
 
 	@Override
-
-	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc, ExistingPlace, ExistingTransition{
+	public void ajouter_Arc(Arc arc) throws NullTArcException, ExistingArc{
 		
 		if(arc!=null) {
 			
 			 if(this.arcs.contains(arc)) {
 				throw new ExistingArc();
 			}
-			/*
-			else if(arc!=null) {
-				this.arcs.add(arc);
-				if(arc instanceof ArcSortant) {
-					Transition t = arc.getTransition();
-					Place p = arc.getPlace();
-					t.add_to_arc_entrant((ArcSortant)arc);
-					p.add_to_arc_sortant((ArcSortant)arc);
-					if(!transitions.contains(t)) {
-						transitions.add(t);
-					}
-					if(!places.contains(p)) {
-						places.add(p);
-					}
-				}
-				if(arc instanceof ArcEntrant) {
-					Transition t = arc.getTransition();
-					Place p = arc.getPlace();
-					if(!transitions.contains(t)) {
-						transitions.add(t);
-					}
-					if(!places.contains(p)) {
-						places.add(p);
-					}
-					arc.getTransition().add_to_arc_sortant((ArcEntrant)arc);
-					arc.getPlace().add_to_arc_entrant((ArcEntrant)arc);
-				}
-			}else {
-				throw new NullTArcException();
-			}
-			*/
+			
 			this.arcs.add(arc);
 		}
 		else { throw new NullTArcException();
 		
 		}
 	}
+	
+    /**
+     * Supprime un arc du réseau de Petri.
+     * 
+     * @param arc L'arc à supprimer.
+     */
 
 	@Override
 	public void supprimer_Arc(Arc arc) {
@@ -145,6 +107,14 @@ public ArrayList<Arc> getArcs(){
 		}
 	}
 
+    /**
+     * Ajoute une place au réseau de Petri.
+     * 
+     * @param place La place à ajouter.
+     * @throws NullPlaceException Si la place est nulle.
+     * @throws ExistingPlace Si la place existe déjà dans le réseau.
+     */
+	
 	@Override
 	public void ajouter_Place(Place place) throws NullPlaceException , ExistingPlace {
 		if(place!=null) {
@@ -161,6 +131,12 @@ public ArrayList<Arc> getArcs(){
 		
 		
 	}
+	
+    /**
+     * Supprime une place du réseau de Petri.
+     * 
+     * @param place La place à supprimer.
+     */
 
 	@Override
 	public void supprimer_Place(Place place) {
@@ -169,6 +145,14 @@ public ArrayList<Arc> getArcs(){
 		}
 		
 	}
+	
+    /**
+     * Ajoute une transition au réseau de Petri.
+     * 
+     * @param transition La transition à ajouter.
+     * @throws NullTransitionException Si la transition est nulle.
+     * @throws ExistingTransition Si la transition existe déjà dans le réseau.
+     */
 
 	@Override
 	public void ajouter_Tarnsition(Transition transition) throws NullTransitionException , ExistingTransition {
@@ -185,6 +169,12 @@ public ArrayList<Arc> getArcs(){
 		
 		
 	}
+	
+    /**
+     * Supprime une transition du réseau de Petri.
+     * 
+     * @param transition La transition à supprimer.
+     */
 
 	@Override
 	public void supprimer_Tarnsition(Transition transition) {
@@ -193,6 +183,14 @@ public ArrayList<Arc> getArcs(){
 		}
 		
 	}
+	
+	 /**
+     * Exécute une transition dans le réseau de Petri, en vérifiant si elle peut être tirée.
+     * 
+     * @param transition La transition à exécuter.
+     * @throws NullTransitionException Si la transition est nulle.
+     * @throws NegativeToken Si une place a un nombre de jetons insuffisant pour exécuter la transition.
+     */
 
 	@Override
     public void fire(Transition transition) throws NullTransitionException, NegativeToken  {
@@ -226,11 +224,15 @@ public ArrayList<Arc> getArcs(){
 		}
 		
 	}
+	
+    /**
+     * Exécute toutes les transitions du réseau de Petri qui sont tirables.
+     */
 
 	@Override
 	public void fireAll(){
 	
-	//	while(transitions!= null) {
+	
 			for (Transition transition : this.transitions) {
 			
 			try {
@@ -244,17 +246,17 @@ public ArrayList<Arc> getArcs(){
 			}
 		}
 			
-		//}
+	
 		
 		
 	}
+	
+    /**
+     * Fournit une représentation sous forme de chaîne de caractères du réseau de Petri.
+     * 
+     * @return La chaîne de caractères représentant le réseau de Petri.
+     */
 
-	//transition.setTirable();
-	//if(transition.isTirable()) {
-		//transitionTirables.add(transition);
-	//}
-//}
-//while (transitionTirables.size()>0) {
 	@Override
 	public String toString() {
 		String s="";
@@ -290,6 +292,15 @@ public ArrayList<Arc> getArcs(){
 		return s;
 	}
 
+    /**
+     * Ajoute des jetons à une place spécifique du réseau de Petri.
+     * 
+     * @param place La place à laquelle ajouter des jetons.
+     * @param jetons Le nombre de jetons à ajouter.
+     * @throws NegativeToken Si le nombre de jetons devient négatif.
+     * @throws NullPlaceException Si la place est nulle.
+     */
+	
 	@Override
 	public void ajouterJetons(Place place, int jetons) throws NegativeToken , NullPlaceException {
 		//
@@ -303,6 +314,17 @@ public ArrayList<Arc> getArcs(){
 			throw new NullPlaceException();
 		}
 	}
+	
+    /**
+     * Retire des jetons d'une place spécifique du réseau de Petri.
+     * 
+     * @param place La place à laquelle retirer des jetons.
+     * @param jetons Le nombre de jetons à retirer.
+     * @throws ExceedExistingToken Si le nombre de jetons à retirer est supérieur au nombre de jetons existants.
+     * @throws NullPlaceException Si la place est nulle.
+     * @throws NegativeToken Si le nombre de jetons devient négatif après le retrait.
+     */
+	
 	@Override
 	public void enleverJetons(Place place , int jetons )  throws ExceedExistingToken , NullPlaceException, NegativeToken{ 
 		
@@ -319,9 +341,13 @@ public ArrayList<Arc> getArcs(){
 			throw new NullPlaceException();
 		}
 	}
+	
+	/**
+     * Change le poids d'un arc dans le réseau de Petri.
+     */
 
 	@Override
-	public void chnagerPoids(Arc arc, int poids ) throws NullTArcException, NegativeWeight  {
+	public void changerPoids(Arc arc, int poids ) throws NullTArcException, NegativeWeight  {
 		
 		if(arc!= null) {
 			if(arc instanceof ArcEntrant  ) {
