@@ -32,11 +32,11 @@ Le projet est structuré en plusieurs classes qui représentent les éléments p
    - Les arcs peuvent être entrants ou sortants, et ont un poids (pour modéliser les relations entre places et transitions).
 
 ### 4. **Classes `ArcSortant` et `ArcEntrant`**
-   - Ces classes sont des sous-classes d'`Arc` et représentent respectivement les arcs sortants et entrants d'une transition.
+   - Ces classes sont des sous-classes d'`Arc` et représentent respectivement les arcs sortants et entrants d'une place.
    - Chaque arc sortant ou entrant a un poids et peut être activé (en fonction des jetons dans les places).
    - Les méthodes principales incluent :
      - `update_jeton_place()`: Met à jour le nombre de jetons dans une place.
-     - `arcIsFireable()`: Vérifie si un arc peut être activé (si le nombre de jetons est suffisant).
+     - `arcIsFireable()`: Vérifie si un arc peut être activé (si le nombre de jetons de la place associée est suffisant).
 
 ### 5. **Classes spécialisées d'arc sortant**
    - **`ArcSortantNormal`** : Arc sortant avec un poids normal.
