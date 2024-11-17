@@ -68,6 +68,7 @@ Voici un exemple simple d'utilisation d'un réseau de Petri avec des places, des
            public class Main {
            public static void main(String[] args) {
            try {
+             Reseau_Petri network
             // Création des places avec un nombre de jetons initial
             Place place1 = new Place(5);
             Place place2 = new Place(0);
@@ -78,17 +79,13 @@ Voici un exemple simple d'utilisation d'un réseau de Petri avec des places, des
             // Création d'un arc entrant et sortant
             ArcEntrant arcEntrant = new ArcEntrant(1, place1, transition);
             ArcSortantNormal arcSortant = new ArcSortantNormal(1, place2, transition);
-
-            // Ajouter l'arc sortant et entrant à la transition
-            transition.add_to_arc_sortant(arcSortant);
-            transition.add_to_arc_entrant(arcEntrant);
-
-            // Vérifier si la transition peut être activée
-            if (transition.isTirable()) {
-                // Si tirable, activer la transition
-                transition.setTirable(true);
-                System.out.println("Transition activée !");
-            }
+            network.ajouter_Place(place1);
+            network.ajouter_Place(place2);
+		      network.ajouter_Tarnsition( transition);
+            network.ajouter_Arc(arcEntrant);
+            network.ajouter_Arc(arcSortant);
+            network.fire(transition);
+            
 
         } catch (Exception e) {
             e.printStackTrace();
