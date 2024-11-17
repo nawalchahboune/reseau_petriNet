@@ -65,9 +65,9 @@ Le projet est structuré en plusieurs classes qui représentent les éléments p
 Voici un exemple simple d'utilisation d'un réseau de Petri avec des places, des transitions et des arcs :
 
 
-public class Main {
-    public static void main(String[] args) {
-        try {
+           public class Main {
+           public static void main(String[] args) {
+           try {
             // Création des places avec un nombre de jetons initial
             Place place1 = new Place(5);
             Place place2 = new Place(0);
