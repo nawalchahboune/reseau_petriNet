@@ -12,8 +12,6 @@ import Exceptions.NegativeWeight;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
 import Exceptions.NullTransitionException;
-import Exceptions.UnknownPlaceException;
-import Exceptions.UnknownTransitionException;
 
 /**
  * Représente un réseau de Petri avec des places, des transitions et des arcs.
@@ -229,12 +227,12 @@ public class Reseau_Petri implements IReseauPetri {
 	
 	public boolean continuerATrier(List<Transition> transitions) {
 		for (Transition transition : transitions) {
-			if(!transition.isTirable()) {
-				return false;
+			if(transition.isTirable()) {
+				return true;
 			}
 			
 		}
-		return true;
+		return false;
 	}
 	
     /**

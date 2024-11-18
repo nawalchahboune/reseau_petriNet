@@ -16,8 +16,6 @@ import Exceptions.NegativeWeight;
 import Exceptions.NullPlaceException;
 import Exceptions.NullTArcException;
 import Exceptions.NullTransitionException;
-import Exceptions.UnknownPlaceException;
-import Exceptions.UnknownTransitionException;
 import Metier.ArcEntrant;
 import Metier.ArcSortant;
 import Metier.ArcSortantNormal;
@@ -85,7 +83,7 @@ public class TestActivationReseauPetri {
 	}
 	*/
 	@Test
-	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
+	void testRS1() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
 	    
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
@@ -174,7 +172,7 @@ public class TestActivationReseauPetri {
 		assertEquals(2,p1.getJetons());
 	}
 	@Test
-	void testRS8() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, UnknownPlaceException, UnknownTransitionException, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
+	void testRS8() throws NullPlaceException, NullTransitionException, NullTArcException, ExistingArc, NegativeToken, ExistingPlace, NegativeWeight, ExistingTransition {
 		network.ajouter_Place(p1);
 		network.ajouter_Place(p3);
 		network.ajouter_Tarnsition(t0);
@@ -612,8 +610,8 @@ public class TestActivationReseauPetri {
 	    assertEquals(2, p4.getJetons());
 	    assertEquals(8, p5.getJetons());
 	    assertEquals(8, p6.getJetons());
-	    assertEquals(9, p7.getJetons());
-	    assertEquals(16, p8.getJetons());
+	    assertEquals(1, p7.getJetons());
+	    assertEquals(20, p8.getJetons());
 	}
 
 
