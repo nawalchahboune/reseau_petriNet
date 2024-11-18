@@ -224,15 +224,24 @@ public class Reseau_Petri implements IReseauPetri {
 		}
 		
 	}
+	/**
+	 * Vérifie si au moins une transition est tirable dans une liste de transitions.
+	 *
+	 * @param transitions La liste des transitions à vérifier.
+	 * @return true si au moins une transition est tirable, sinon  false.
+	 *
+	 */
 	
-	public boolean continuerATrier(List<Transition> transitions) {
-		for (Transition transition : transitions) {
-			if(transition.isTirable()) {
-				return true;
-			}
-			
-		}
-		return false;
+	public boolean continuerATirer(List<Transition> transitions) {
+	    // Parcourt chaque transition de la liste
+	    for (Transition transition : transitions) {
+	        // Vérifie si la transition est tirable
+	        if (transition.isTirable()) {
+	            return true; // Une transition tirable a été trouvée
+	        }
+	    }
+	    // Si aucune transition tirable n'a été trouvée, retourne false
+	    return false;
 	}
 	
     /**
@@ -242,7 +251,7 @@ public class Reseau_Petri implements IReseauPetri {
 	@Override
 	public void fireAll(){
 	
-			boolean continuer= this.continuerATrier(transitions);
+			boolean continuer= this.continuerATirer(transitions);
 			while(continuer) {
 				for (Transition transition : this.transitions) {
 					
@@ -256,7 +265,7 @@ public class Reseau_Petri implements IReseauPetri {
 						e.getMessage();
 					}
 					}
-				continuer= this.continuerATrier(transitions);
+				continuer= this.continuerATirer(transitions);
 				}
 			
 	

@@ -1,5 +1,7 @@
 package Metier;
 
+import java.util.List;
+
 import Exceptions.*;
 
 /**
@@ -91,8 +93,16 @@ public interface IReseauPetri {
      */
 	public void fire(Transition transition) throws NullTransitionException, NegativeToken;
 	  /**
-     * Exécute toutes les transitions qui sont tirables dans le réseau de Petri.
+     * Exécute toutes les transitions qui sont tirables dans le réseau de Petri jusqu'à l'absence d'une transition tirable.
      */
 	public void fireAll();
+	/**
+	 * Vérifie si au moins une transition est tirable dans une liste de transitions.
+	 *
+	 * @param transitions La liste des transitions à vérifier.
+	 * @return true si au moins une transition est tirable, sinon  false.
+	 *
+	 */
+	public boolean continuerATirer(List<Transition> transitions) ;
 
 }
