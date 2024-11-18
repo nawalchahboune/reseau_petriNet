@@ -225,6 +225,12 @@ public class Reseau_Petri implements IReseauPetri {
 		
 	}
 	
+	 /**
+     * La fonction continuerATrier permet de vérifier s'il y a au moins une transition tirable
+     * @return un booléen
+     */
+
+	
 	public boolean continuerATrier(List<Transition> transitions) {
 		for (Transition transition : transitions) {
 			if(transition.isTirable()) {
@@ -237,6 +243,7 @@ public class Reseau_Petri implements IReseauPetri {
 	
     /**
      * Exécute toutes les transitions du réseau de Petri qui sont tirables.
+     * La fonction continuerATrier permet de vérifier s'il y a au moins une transition tirable
      */
 
 	@Override
