@@ -1,6 +1,8 @@
 package Tests;
 
-import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -92,6 +94,11 @@ public class TestActivationReseauPetri {
 		network.fire(t0);
 		
 		assertEquals(0,p3.getJetons());
+		
+		Exception e = assertThrows(NullTransitionException.class, ()->{
+			network.fire(null);
+		});
+		assertEquals("transition null !!", e.getMessage());
 	}
 	
 	@Test

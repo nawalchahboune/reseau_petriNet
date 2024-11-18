@@ -1,6 +1,7 @@
 package Metier;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import Exceptions.ExceedExistingToken;
 import Exceptions.ExistingArc;
@@ -218,11 +219,22 @@ public class Reseau_Petri implements IReseauPetri {
 						arcEnt.update_jeton_place();
 					
 				}
+				System.out.println("la transition "+transition.toString()+ "est tirée !!");
 			}
 		}else {
 			throw new NullTransitionException();
 		}
 		
+	}
+	
+	public boolean continuerATrier(List<Transition> transitions) {
+		for (Transition transition : transitions) {
+			if(!transition.isTirable()) {
+				return false;
+			}
+			
+		}
+		return true;
 	}
 	
     /**
@@ -232,19 +244,22 @@ public class Reseau_Petri implements IReseauPetri {
 	@Override
 	public void fireAll(){
 	
-	
-			for (Transition transition : this.transitions) {
-			
-			try {
-				this.fire(transition);
-			} catch (NullTransitionException e) {
-				
-				e.getMessage();
-			} catch (NegativeToken e) {
-				
-				e.getMessage();
-			}
-		}
+			boolean continuer= this.continuerATrier(transitions);
+			while(continuer) {
+				for (Transition transition : this.transitions) {
+					
+					try {
+						this.fire(transition);
+					} catch (NullTransitionException e) {
+						
+						e.getMessage();
+					} catch (NegativeToken e) {
+						
+						e.getMessage();
+					}
+					}
+				continuer= this.continuerATrier(transitions);
+				}
 			
 	
 		

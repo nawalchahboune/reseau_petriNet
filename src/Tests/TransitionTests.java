@@ -12,16 +12,6 @@ import Metier.Transition;
 
 class TransitionTests {
 
-	/*@Test
-	void test() {
-		Transition t = new Transition();
-		
-		assertEquals("Transition_1", t.getName());
-		t.setName("ma transition");
-		assertEquals("ma transition", t.getName());
-
-		
-	}*/
 	@Test
 	void testTirable() {
 		Transition t = new Transition();
